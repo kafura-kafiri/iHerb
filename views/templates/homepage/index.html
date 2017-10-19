@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--[if IE 9 ]><html class="ie9 en home index " dir="ltr"> <![endif]-->
+<!--[if IE 10 ]><html class="ie10 en home index " dir="ltr"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html class="en home index  " dir="ltr">
+<!--<![endif]-->
+<head>
+   {% include 'layout/resources.html' %}
+   <title>iHerb.com - Vitamins, Supplements &amp; Natural Health Products</title>
+   <meta name="format-detection" content="telephone=no">
+   <input type="hidden" id="welcomeName" name="welcomeName" value="" data-share-code="">
+</head>
+<body>
+<!-- Google Tag Manager -->
+{% import 'homepage/scripts.html' as scripts %}
+{{ scripts.layer_variable() }}
+{{ scripts.no_script() }}
+{{ scripts.gtm() }}
+<!-- End Google Tag Manager -->
+<script src="https://s.images-iherb.com/js/ga-pro6.min.js"></script>
+{{ scripts.ga() }}
+
+<div id="transBG" class="transparency hide"></div>
+<div id="toaster"></div>
+
+
+{{ scripts.variables() }}
+
+{% include 'layout/header/index.html' %}
+<div class="iherb-header-threshold"></div>
+<div class="iherb-header-overlay transparency hide"></div>
+<input type="hidden" id="domainHelper" value="https://checkout.iherb.com/account/login/"/>
+<input type="hidden" id="nav-language" value="en"/>
+<input type="hidden" id="nav-language-code" value="en-US"/>
+<input type="hidden" id="curr-device"/>
+<input type="hidden" id="curr-customer"/>
+<input type="hidden" id="curr-token"/>
+<input type="hidden" id="nav-share"/>
+
+{% include 'homepage/main/index.html' %}
+
+<div class="live-container home-module" style="display: none;">
+   <div class="container-fluid">
+      <div class="row">
+         <div class="col-xs-24">
+            <div class="title-container">
+                    <span class="h4">
+                        <bdi>iHerb <strong class="text-uppercase title">Live</strong></bdi>
+                    </span>
+               <span class="subtitle">
+                        Check out what others are buying in real time!
+                    </span>
+               <div class="navigation-container">
+                        <span class="iherb-live-navigation scroll-left disable-navigation disabled-style">
+                                <i class="icon-rewind"></i>
+                        </span>
+                  <span class="iherb-live-navigation scroll-right">
+                            <i class="icon-pause"></i>
+                        </span>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="row row-buffer">
+         <div class="col-xs-24">
+            <div class="live-carousel">
+               <div class="row">
+                  <div class="col-xs-24">
+                     <div class="live-wrapper">
+                        <div class="live-scroller"></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+<div class="latest-blog-articles-container"
+     data-icon-url="https://s.images-iherb.com//i/footer/visit-our-blog/blog-icon-us-en.png" style="display: none;">
+   <div class="container-fluid">
+      <div class="flex-container">
+      </div>
+   </div>
+</div>
+{{ scripts.jquery() }}
+
+{{ scripts.promo() }}
+
+{% include 'layout/footer.html' %}
+
+{{ scripts.gts() }}
+
+<script type="text/javascript">
+        (() => {
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) { return; }
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+
+            window.fbAsyncInit = function () {
+                FB.init({
+                    appId: '275572386185529',
+                    //appId: '233374750478668', //test app id
+                    xfbml: true,
+                    version: 'v2.9'
+                });
+            };
+        })();
+
+</script>
+</body>
+</html>

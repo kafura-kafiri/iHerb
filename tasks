@@ -1,0 +1,52 @@
+test search, sug <<
+realise() <<
+
+sign in sign out to header.
+
+profile + wish_list
+
+reviews {
+    add
+    delete
+    ...
+}
+
+trending >
+
+from media insert:
+        # if user does not select file, browser also
+        # submit a empty part without filename
+        #  filename = secure_filename(file.filename)
+
+
+"""
+@blue.route('/articles/<_id>/plus/<level_1>/<level_2>/', methods=['POST'])
+def add_image(_id, level_1, level_2):
+    (l1, l2) = (int(level_1) - 1, int(level_2) - 1)
+    print(l1, l2)
+    article = hows.find_one({'_id': ObjectId(_id)})
+    print(str(article))
+    level_1 = article['level_1'][l1]
+    level_2 = level_1['level_2'][l2]
+    raw_img = request.files['image']
+    print(raw_img)
+    img_id = fs.put(raw_img)
+    print(img_id)
+    base = 'http://localhost:5000'
+    level_2['i'] = base + '/images/' + str(img_id)
+    hows.update(
+        {"_id": article['_id']},
+        article,
+        upsert=True
+    )
+    return 'img added'
+
+
+@blue.route('/images/<_id>')
+def image(_id):
+    image_binary =  fs.get(ObjectId(_id)).read()
+    response = make_response(image_binary)
+    response.headers['Content-Type'] = 'image/jpeg'
+    #response.headers['Content-Disposition'] = 'attachment; filename=img.jpg'
+    return response
+"""

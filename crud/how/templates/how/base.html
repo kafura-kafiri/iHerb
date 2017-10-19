@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='how/wow/style-cleaned.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='how/wow/basics.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='how/wow/sticky.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='how/wow/intro.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='how/side.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='how/static.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='how/bar.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='how/extra.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='how/details.css') }}"/>
+
+    <script src="{{ url_for('static', filename='how/jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='how/jquery.inview.min.js') }}"></script>
+    {% block head %}{% endblock %}
+</head>
+<body>
+
+<div class="theme"
+     {% if base.theme %}
+        style="background-image: url({{ base.theme }})"
+     {% endif %}
+>
+    <div class="menu">
+        <div class="else"></div>
+        <div class="title_bar">
+            <div class="tube">
+                <span>title</span>
+            </div>
+            <div class="sand-time"></div>
+            <div class="num">
+                <div class="level">level</div>
+                <div class="int">num</div>
+            </div>
+        </div>
+        <div class="logo"></div>
+    </div>
+</div>
+<div class="menu-shadow"></div>
+
+{% block content %}{% endblock %}
+{% block footer %}{% endblock %}
+</body>
+<script>
+    var stack = []
+    $(function () {
+        function update() {
+            if (stack.length != 0)
+                [title, num, level_1] = stack[stack.length - 1];
+            else
+                [title, num, level_1] = ['', '', ''];
+            var target = $('.title_bar');
+            target.find('.tube > span').html(title);
+            target.find('.num > .int').html(num);
+            target.find('.num > .level').html(level_1);
+        }
+
+        $('.pointer').on('inview', function(event, isInView) {
+            var target = $(event.target);
+            var h3 = target.parent();
+            var top = target.offset().top;
+            var offset = target.offset();
+            var offsetTop = offset.top - $(document).scrollTop();
+            //console.log(offsetTop);
+            if (isInView) {
+                if (stack.length != 0 && stack[stack.length - 1][3] >= top  && offsetTop < 350) {
+                    //alert('undo');
+                    h3.css('z-index', 89);
+                    stack.pop();
+                    console.log(stack.length);
+                    update();
+                }
+            } else {
+                if (stack.length == 0 || stack[stack.length - 1][3] < top && offsetTop < 350) {
+                    //alert('lets z = 0');
+                    h3.css('z-index', 0);
+                    var title = h3.find('.tube > span').html();
+                    var num = h3.find('.num > .int').html();
+                    var level_1 = h3.find('.num > .level').html();
+                    stack.push([title, num, level_1, top]);
+                    console.log(stack.length);
+                    update();
+                }
+            }
+        });
+
+        function absolute(height) {
+            //alert(height);
+            var ratio = height / 6;
+            height = 90 - height / 2.3;
+            $('.theme').css({
+                height: height + 'px',
+                'padding-top': height + 'px',
+                'background-position-y': 27 - ratio + '%',
+            });
+            $('.theme').find('.menu').css({
+                position: 'initial',
+            });
+            $('.menu-shadow').css({
+                height: '0px',
+            });
+        }
+        function fixed() {
+            $('.theme').css({
+                height: '0px',
+                'padding-top': '0px',
+                'background-position-y': '27%',
+            });
+            $('.theme').find('.menu').css({
+                position: 'fixed',
+            });
+            $('.menu-shadow').css({
+                height: '128px',
+            });
+        }
+        if($('.theme').css('background-image') != 'none') {
+            absolute(0);
+            $(window).on( "scroll", function(eve) {
+                var windows_top = $(window).scrollTop();
+                if(windows_top < 190 - 54 - 68)
+                    absolute(windows_top);
+                else
+                    fixed();
+            });
+        } else {
+
+        }
+    });
+</script>
+</html>
