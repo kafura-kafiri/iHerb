@@ -8,6 +8,7 @@ fs = GridFS(client['IHERB_FS'])
 products = db['PRODUCTS']
 products.drop_indexes()
 products.create_index([("$**", "text")], weights={"$**": 1, "title": 3})
+products.create_index([("title", 1)])
 
 users = db['USERS']
 hows = db['HOWS']

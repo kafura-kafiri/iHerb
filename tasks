@@ -1,5 +1,11 @@
-test search, sug <<
+11c.js 9 matches .pagination -> .xpagination
+
 realise() <<
+img of diff sizes
+templates best practice to lan > done
+add link insert to universal alter
+realise() <<
+finish the day
 
 sign in sign out to header.
 
@@ -10,13 +16,6 @@ reviews {
     delete
     ...
 }
-
-trending >
-
-from media insert:
-        # if user does not select file, browser also
-        # submit a empty part without filename
-        #  filename = secure_filename(file.filename)
 
 
 """

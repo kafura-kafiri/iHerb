@@ -18,10 +18,15 @@ def suggest_categories(query, size):
                 {'$text': {'$search': query}},
                 {'title': {'$regex': query}},
             ]
+        },
+        {"score": {
+            "$meta": "textScore"
+        }},
+    ).sort([(
+        "score", {
+            "$meta": "textScore"
         }
-    ).sort(
-        'hit', DESCENDING
-    ).limit(
+    )]).limit(
         size
     )
     return __categories

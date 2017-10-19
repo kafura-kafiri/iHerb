@@ -77,6 +77,6 @@ def free_from_(tree):
                 new_tree[k] = free_from_(node)
         return new_tree
     elif isinstance(tree, list):
-        for node in tree:
-            free_from_(node)
+        for idx, node in enumerate(tree):
+            tree[idx] = free_from_(node)
     return tree

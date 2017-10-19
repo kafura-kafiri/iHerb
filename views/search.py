@@ -10,27 +10,36 @@ from crud.brand import suggest_brands
 from crud.category import suggest_categories
 
 
-@blue.route('/s/')
-def search():
-    _json = request_attributes(request, query=str, category=str, brand=str, pagesize=int, page=int)
-    add_keyword(_json['query'])
+def search(kw, size, category=None, brand=None, page=1, auto_completion=True):
+    projection = {}
+
+    search_selector = {
+        "$or":
+            [
+                {"$text": {
+                    "$search": kw,
+                    "$language": ''
+                }},
+            ],
+    }
+
+    if auto_completion:
+        search_selector['$or'].append({'title': {'$regex': kw}})
+
     fields = {
         "categories": {
-            "$elemMatch": {"title": _json['category']}
+            "$elemMatch": {"title": category}
         },
-        'brand.title': _json['brand'],
+        'brand.title': brand,
     }
-    if _json['category'] is None or _json['category'] == '':
+    if category is None or category == '':
         del fields['categories']
-    if _json['brand'] is None or _json['brand'] == '':
+    if brand is None or brand == '':
         del fields['brand.title']
-    _products = products.find(
+    return products.find(
         {
             **fields,
-            "$text": {
-                "$search": _json['query'],
-                "$language": ''
-            }
+            **search_selector
         },
         {"score": {
             "$meta": "textScore"
@@ -40,10 +49,17 @@ def search():
             "$meta": "textScore"
         }
     )]).skip(
-        _json['pagesize'] * (_json['page'] - 1)
+        size * (page - 1)
     ).limit(
-        _json['pagesize']
+        size
     )
+
+
+@blue.route('/s/')
+def result():
+    _json = request_attributes(request, kw=str, category=str, brand=str, pagesize=int, page=int)
+    add_keyword(_json['kw'])
+    _products = search(_json['kw'], _json['pagesize'], category=_json['category'], brand=_json['brand'], page=_json['page'], auto_completion=False)
     _products = [obj2str(_product) for _product in _products]
     ctx = {
         'lang': {
@@ -52,7 +68,14 @@ def search():
             }
         }
     }
-    return render_template('result/index.html', query=_json['query'], products=_products, **ctx)
+    query = {
+        'kw': _json['kw'],
+        'category': _json['category'],
+        'brand': _json['brand'],
+        'page': _json['page'],
+        'pagesize': _json['pagesize']
+    }
+    return render_template('result/index.html', query=query, products=_products, **ctx)
 
 
 @blue.route('/sug/')
@@ -67,48 +90,18 @@ def suggest():
     _categories = suggest_categories(kw, 5)
     _categories = [[_category['title'], str(_category['_id'])] for _category in _categories]
 
-    _products = products.find(
-        {
-            "$text": {
-                "$search": kw,
-                "$language": ''
-            }
-        },
-        {"score": {
-            "$meta": "textScore"
-        }},
-        {"title": 1}
-    ).sort([(
-        "score", {
-            "$meta": "textScore"
-        }
-    )]).limit(3)
-    _products = [obj2str(_product) for _product in _products]
-    return _products
+    _products = search(kw, 3)
+    _products = [{
+        'url': 'pr/' + str(_product['_id']),
+        'dname': _product['title'],
+        'img': _product['img'][0]
+                 } for _product in _products]
+
+    print('products')
+    print(_products)
 
     suggestion = {
-        "products": [
-            {
-                "url": "pr/Nubian-Heritage-African-Black-Soap-Bar-5-oz-141-g/11242",
-                "dname": "Nubian Heritage, African Black Soap Bar, 5 oz (141 g)",
-                "img": "NBH-10600-13"
-            },
-            {
-                "url": "pr/Madre-Labs-Exfoliating-Soap-Bar-with-Marula-Tamanu-Oils-plus-Shea-Butter-Citrus-5-oz-141-g/68389",
-                "dname": "Madre Labs, Exfoliating Soap Bar with Marula & Tamanu Oils plus Shea Butter, Citrus, 5 oz (141 g)",
-                "img": "MLI-01044-1"
-            },
-            {
-                "url": "pr/Nubian-Heritage-African-Black-Soap-Body-Wash-Detoxifying-Balancing-13-fl-oz-384-ml/8475",
-                "dname": "Nubian Heritage, Body Wash, African Black Soap, Detoxifying & Balancing, 13 fl oz (384 ml)",
-                "img": "NBH-10603-3"
-            },
-            {
-                "url": "pr/One-with-Nature-Triple-Milled-Soap-Lavender-Soap-Bar-7-oz-200-g/5779",
-                "dname": "One with Nature, Triple Milled Soap, Lavender Soap Bar, 7 oz (200 g)",
-                "img": "OWN-00000-8"
-            }
-        ],
+        "products": _products,
         "categories": _categories,
         "general": _keywords,
         "brands": _brands,

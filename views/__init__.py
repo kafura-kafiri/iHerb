@@ -5,6 +5,7 @@ from views import blue
 from flask import render_template, request
 from utility import request_attributes, obj2str
 from bson import ObjectId
+from config import products
 
 context = {
     'redirect': 'views.homepage',
@@ -23,7 +24,34 @@ context = {
             'img': "https://s.images-iherb.com/cms/banners/dnutbanner1004en-US.jpg",
         }
     ],
-    'products': [
+}
+
+
+@blue.route('/')
+def homepage():
+    keys = [ObjectId(key) for key in trending.keys()]
+    print(keys)
+    context['products'] = products.find({'_id': {"$in": keys}})
+    return render_template('homepage/index.html', **context)
+
+
+trending = {}
+@blue.route('/trending/*')
+def clear_trending():
+    trending.clear()
+    return "['success', 200]", 200
+@blue.route('/trending/<_id>+')
+def insert_trending(_id):
+    trending[_id] = True
+    return "['success', 200]", 200
+@blue.route('/trending/-')
+def show_trending():
+    import json
+    return json.dumps(trending, indent=2)
+
+import views.search
+
+"""'products': [
         {
             '_id': '1',
             'title': '1',
@@ -37,83 +65,4 @@ context = {
                 }
             },
             'img': ['https://www.images-iherb.com/r/NWY-10700-6.jpg'],
-        },  {
-            '_id': '2',
-            'title': '2',
-            'value': {
-                'our': 200,
-            },  # ractive converts to price
-            'reviews': {
-                'score': {
-                    'value': 4.5,
-                    'population': 833,
-                }
-            },
-            'img': ['https://www.images-iherb.com/r/NWY-10700-6.jpg'],
-        },  {
-            '_id': '3',
-            'title': '3',
-            'value': {
-                'our': 300,
-            },  # ractive converts to price
-            'reviews': {
-                'score': {
-                    'value': 4.5,
-                    'population': 833,
-                }
-            },
-            'img': ['https://www.images-iherb.com/r/NWY-10700-6.jpg'],
-        },  {
-            '_id': '4',
-            'title': '4',
-            'value': {
-                'our': 400,
-            },  # ractive converts to price
-            'reviews': {
-                'score': {
-                    'value': 4.5,
-                    'population': 833,
-                }
-            },
-            'img': ['https://www.images-iherb.com/r/NWY-10700-6.jpg'],
-        },  {
-            '_id': '5',
-            'title': '5',
-            'value': {
-                'our': 500,
-            },  # ractive converts to price
-            'reviews': {
-                'score': {
-                    'value': 4.5,
-                    'population': 833,
-                }
-            },
-            'img': ['https://www.images-iherb.com/r/NWY-10700-6.jpg'],
-        },  {
-            '_id': '6',
-            'title': '6',
-            'value': {
-                'our': 600,
-            },  # ractive converts to price
-            'reviews': {
-                'score': {
-                    'value': 4.5,
-                    'population': 833,
-                }
-            },
-            'img': ['https://www.images-iherb.com/r/NWY-10700-6.jpg'],
-        },
-    ],
-}
-
-
-@blue.route('/')
-def homepage():
-    return render_template('homepage/index.html', **context)
-
-
-@blue.route('/inspect')
-def inspect():
-    return render_template('homepage/inspect.html')
-
-import views.search
+        }"""

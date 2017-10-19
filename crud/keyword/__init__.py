@@ -10,7 +10,7 @@ crud(blue, keywords)
 
 
 _keywords = {}
-_max_length = 10
+_max_length = 2
 
 
 def add_keyword(key):
@@ -19,12 +19,14 @@ def add_keyword(key):
     else:
         _keywords[key] += 1
     if len(_keywords) == _max_length:
-        for key in _keywords:
+        for key, hit in _keywords.items():
             try:
-                keywords.update(
+                result = keywords.find_and_modify(
                     {"title": key},
-                    {"$inc": { "hit": 1 }},
+                    {"$inc": { "hit": hit }},
                 )
+                if not result:
+                    raise
             except:
                 keywords.insert_one({
                     "title": key,

@@ -1,5 +1,5 @@
 <div class="iherb-header-search">
-   <form action="https://www.iherb.com/search" method="get" id="searchForm">
+   <form action="/s/" method="get" id="searchForm">
       <div class="search-box">
          <input
                id="txtSearch"
@@ -10,6 +10,10 @@
                maxlength="60"
                autocomplete="off"
          />
+         <input type="hidden" name="category" value="">
+         <input type="hidden" name="brand" value="">
+         <input type="hidden" name="page" value="1">
+         <input type="hidden" name="pagesize" value="24">
          <div class="iherb-header-search-button">
             <button type="submit" id="searchBtn">
                <i class="icon-header_search"></i>
