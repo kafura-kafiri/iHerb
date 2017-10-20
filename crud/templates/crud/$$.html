@@ -12,7 +12,7 @@
 {% raw %}
 <script id="template" type="text/ractive">
    {{#partial field}}
-      <form id="{{ @keypath }}" enctype="multipart/form-data">
+      <form enctype="multipart/form-data">
          <div class="ui left action input">
             <button on-click="['valuate', @keypath, @event, @node]" class="ui button" type="submit" value="Valuate">Valuate</button>
             <input class="ui button" type="file" name="file" accept="image/*">
@@ -77,7 +77,11 @@
       {{/if}}
    {{/partial}}
    <div class="ui {# #} right aligned container">
+      <br>
       {{> thumbnail}}
+      <br>
+      <button class="ui big inverted fluid green button"> SAVE </button>
+      <br>
    </div>
 </script>
 {% endraw %}
@@ -100,16 +104,23 @@
          btn = event.target;
          uploader = btn.nextElementSibling;
          input = uploader.nextElementSibling;
+         form = $(btn).closest('form');
          var file = uploader.files[0];
          if(file) {
             $.ajax({
                url: '/media/+',
                type: 'POST',
-               data: new FormData($('#' + keyPath)[0]),
+               data: new FormData(form[0]),
                cache: false,
                contentType: false,
                processData: false,
             }).done(function(response) {
+               plusUltra.set(keyPath, response);
+            });
+         } else {
+            input = $(input).val();
+            $.post( '/media/+', { url: input })
+            .done(function( response ) {
                plusUltra.set(keyPath, response);
             });
          }
@@ -181,6 +192,19 @@
                },
             });
          }
+      });
+
+      $('button.ui.big.inverted.fluid.green.button').click(function() {
+         var document = plusUltra.get();
+         document = JSON.stringify(document);
+         $.ajax({
+            type: "POST",
+            url: '',
+            data: {json: document},
+            success: function(response) {
+               location.reload();
+            },
+         });
       });
 
    });

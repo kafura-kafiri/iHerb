@@ -5,13 +5,12 @@ app.config['DEBUG'] = True
 app.config['SECRET_KEY'] = 'very secret key'
 app.config['TESTING'] = True
 
+from trans import trans, update
+update()
+app.jinja_env.globals.update(_=trans)
+
 from crud.user.login import setup
 setup(app)
-
-'''
-from services.tg import load_tg
-load_tg()
-'''
 
 from media import blue as media
 app.register_blueprint(media, url_prefix='/media')

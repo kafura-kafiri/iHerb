@@ -6,7 +6,7 @@ schema = {
 
 how = {
         'base': {
-            'theme': 'http://localhost:5000/static/how/theme/yanyin.jpg',
+            'theme': '59e99191366855134c164150',
         },
         'meta': {
             'title': 'خواص و فواید انار و آب انارچیست؟ خواص درمانی انار کدام است؟',

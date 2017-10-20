@@ -24,9 +24,9 @@
                            {% for img_link in img %}
                               <div class="img-wrapper {{ 'active' if loop.index == 1 else '' }} popup-easyzoom easyzoom easyzoom--overlay">
                                  <div class="slide">
-                                    <a href="https://www.images-iherb.com/l/THR-00287-5.jpg">
+                                    <a href="/media/l/{{ pr.img.0 }}.jpg">
                                        <img class="lazy img-responsive"
-                                            data-lazyload="https://www.images-iherb.com/y/THR-00287-5.jpg"/>
+                                            data-lazyload="/media/y/{{ pr.img.0 }}.jpg"/>
                                     </a>
                                  </div>
                               </div>
@@ -57,10 +57,7 @@
 
             <section class="column image-fixed">
                <section class="column fluid product-description-title visible-xs visible-sm">
-
-
                   <div id="product-summary-header">
-
                      <div class="product-past-purchased hide hidden-md hidden-lg hidden-xl">
                         <p>You purchased this item on <span class="product-ordered-date"></span></p>
                         <a href="" class="product-ordered-link">View this order</a>
@@ -109,28 +106,23 @@
                <div class="image-container">
                   <div id="product-image">
                      <div class="product-summary-image product-easyzoom easyzoom easyzoom--adjacent">
-                        <a href="https://www.images-iherb.com/l/THR-00287-5.jpg">
-                           <img id="iherb-product-image" src="https://www.images-iherb.com/v/THR-00287-5.jpg"
-                                srcset="https://www.images-iherb.com/w/THR-00287-5.jpg 1x, https://www.images-iherb.com/v/THR-00287-5.jpg 1.5x"
+                        <a href="/media/l/{{ pr.img.0 }}.jpg">
+                           <img id="iherb-product-image" src="/media/v/{{ pr.img.0 }}.jpg"
+                                srcset="/media/w/{{ pr.img.0 }}.jpg 1x, /media/v/{{ pr.img.0 }}.jpg 1.5x"
                                 width="300" height="300"
                                 alt="Thorne Research, Basic Nutrients 2/Day, 60 Vegetarian Capsules"/>
                         </a>
                      </div>
                      <div class="thumbnail-container">
+                        {% for _img in pr.img %}
                         <img src="https://www.images-iherb.com/t/THR-00287-5.jpg"
-                             srcset="https://www.images-iherb.com/b/THR-00287-5.jpg 1x, https://www.images-iherb.com/t/THR-00287-5.jpg 1.5x"
-                             alt="Thorne Research, Basic Nutrients 2/Day, 60 Vegetarian Capsules"
+                             srcset="/media/b/{{ _img }}.jpg 1x, /media/t/{{ _img }}.jpg 1.5x"
+                             alt="{{ pr.title }}"
                              width="50"
                              height="50"
-                             data-large-img="https://www.images-iherb.com/l/THR-00287-5.jpg"
-                             class="selected"/>
-                        <img src="https://www.images-iherb.com/t/THR-00287-6.jpg"
-                             srcset="https://www.images-iherb.com/b/THR-00287-6.jpg 1x, https://www.images-iherb.com/t/THR-00287-6.jpg 1.5x"
-                             alt="Thorne Research, Basic Nutrients 2/Day, 60 Vegetarian Capsules"
-                             width="50"
-                             height="50"
-                             data-large-img="https://www.images-iherb.com/l/THR-00287-6.jpg"
-                             class=""/>
+                             data-large-img="/media/l/{{ _img }}.jpg"
+                             class="{{ 'selected' if loop.index == 1 else '' }}"/>
+                        {% endfor %}
                      </div>
                   </div>
                </div>
@@ -157,14 +149,19 @@
                         </span>
                      </a>
                   </div>
-
-
-                  <div class='rating'><a class='stars'
-                                         href='https://www.iherb.com/r/Thorne-Research-Basic-Nutrients-2-Day-60-Veggie-Caps/52954/?p=1'><i
-                        class='icon-stars_45 full' title='4.7/5 - 48 Reviews'></i><i
-                        class='icon-stars_50 empty'></i></a><a class='rating-count'
-                                                               href='https://www.iherb.com/r/Thorne-Research-Basic-Nutrients-2-Day-60-Veggie-Caps/52954/?p=1'
-                                                               title='4.7/5 - 48 Reviews'><span>48</span> Reviews</span>
+                  <div class='rating'>
+                     <a
+                           class='stars'
+                           href='https://www.iherb.com/r/Thorne-Research-Basic-Nutrients-2-Day-60-Veggie-Caps/52954/?p=1'
+                     >
+                        <i class='icon-stars_45 full' title='4.7/5 - 48 Reviews'></i>
+                        <i class='icon-stars_50 empty'></i>
+                     </a>
+                     <a
+                           class='rating-count'
+                           href='https://www.iherb.com/r/Thorne-Research-Basic-Nutrients-2-Day-60-Veggie-Caps/52954/?p=1'
+                           title='4.7/5 - 48 Reviews'
+                     ><span>48</span> Reviews</span>
                   </a> <span class='product-write-review hide'>| <a href=''
                                                                     class='product-review-link'>Write a Review</a></span>
                   </div>
@@ -176,7 +173,6 @@
                   <strong class="text-primary">
                      In Stock
                   </strong>
-
                </div>
             </section>
 
@@ -260,8 +256,8 @@
                      <div class="product-left">
                         <div class="product-image-container">
                            <img
-                                 src="{{ pr.combo.selfie }}"
-                                 srcset="{{ pr.combo.selfie }} 1x, {{ pr.combo.selfie }} 1.5x"
+                                 src="/media/m/{{ pr.img.0 }}"
+                                 srcset="/media/t/{{ pr.img.0 }} 1x, /media/m/{{ pr.img.0}} 1.5x"
                                  class="img-responsive"
                            />
                         </div>
@@ -273,8 +269,8 @@
                         <div class="product-image-container">
                            <a href="/pr/{{ pr.combo._id }}">
                               <img
-                                    src="{{ pr.combo.img.0 }}"
-                                    srcset="{{ pr.combo.img.0 }} 1x, {{ pr.combo.img.0 }} 1.5x"
+                                    src="/media/m/{{ pr.combo.img.0 }}"
+                                    srcset="/media/t/{{ pr.combo.img.0 }} 1x, /media/m/{{ pr.combo.img.0 }} 1.5x"
                                     class="img-responsive"
                               />
                            </a>

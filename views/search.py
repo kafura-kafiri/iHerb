@@ -18,7 +18,6 @@ def search(kw, size, category=None, brand=None, page=1, auto_completion=True):
             [
                 {"$text": {
                     "$search": kw,
-                    "$language": ''
                 }},
             ],
     }

@@ -2,7 +2,7 @@ from flask import Blueprint
 blue = Blueprint('views', __name__,template_folder='templates')
 
 from views import blue
-from flask import render_template, request
+from flask import render_template, request, render_template_string
 from utility import request_attributes, obj2str
 from bson import ObjectId
 from config import products
@@ -35,6 +35,14 @@ def homepage():
     return render_template('homepage/index.html', **context)
 
 
+@blue.route('/trans')
+def transitive():
+    string = '''
+        {{ _('huli') }}
+    '''
+    return render_template_string(string)
+
+
 trending = {}
 @blue.route('/trending/*')
 def clear_trending():
@@ -50,19 +58,3 @@ def show_trending():
     return json.dumps(trending, indent=2)
 
 import views.search
-
-"""'products': [
-        {
-            '_id': '1',
-            'title': '1',
-            'value': {
-                'our': 100,
-            },  # ractive converts to price
-            'reviews': {
-                'score': {
-                    'value': 4.5,
-                    'population': 833,
-                }
-            },
-            'img': ['https://www.images-iherb.com/r/NWY-10700-6.jpg'],
-        }"""

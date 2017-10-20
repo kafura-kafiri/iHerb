@@ -68,15 +68,13 @@
                         {% for inner_level in level.level_2 %}
                             <li class="hasad">
                                 <div class="mwimg largeimage floatcenter " style="max-width:728px">
-
                                     {% if bool_var %}
-                                        <form action="plus/{{ outer_loop.index }}/{{ loop.index }}/" method="post"
+                                        <form action="/hows/{{ _id }}/{{ outer_loop.index }}/{{ loop.index }}/media/+" method="post"
                                               enctype="multipart/form-data">
                                             <input type="file" name="image">
                                             <input type="submit" value="Upload Image">
                                         </form>
                                     {% endif %}
-
 
                                     {% if inner_level.i %}
                                         <a href="#/Image:Treat-Chicken-Pox-Step-1-Version-2.jpg" class="image lightbox"
@@ -86,7 +84,7 @@
                                                 onload="WH.performance.clearMarks('image1_rendered'); WH.performance.mark('image1_rendered');"
                                                 id="img_1c2bb87c5f"
                                                 data-src="http://pad3.whstatic.com/images/thumb/4/44/Treat-Chicken-Pox-Step-1-Version-2.jpg/aid1383609-728px-Treat-Chicken-Pox-Step-1-Version-2.jpg"
-                                                src="{{ inner_level.i }}">
+                                                src="/media/n/{{ inner_level.i }}">
                                             <script>var img = document.getElementById('img_1c2bb87c5f');
                                             defer.add(img);
                                             </script>

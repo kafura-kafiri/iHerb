@@ -10,8 +10,8 @@
             data-ga-event-action="Clicks Homepage trending"
             data-ga-event-label="Product Click-image"
       >
-         <img src="{{ pr.img.0 }}"
-              srcset="{{ pr.img.0 }} 1x, {{ pr.img.0 }} 1.5x"
+         <img src="/media/r/{{ pr.img.0 }}"
+              srcset="/media/k/{{ pr.img.0 }} 1x, /media/r/{{ pr.img.0 }} 1.5x"
               alt="{{ pr.title }}"
               itemprop="image" data-img="img" data-imgtitle="title"
               title="{{ pr.title }}"
@@ -63,7 +63,7 @@
       <a
             class="product-image"
             data-prodhref="prodHref"
-            data-image="{{ pr.img.0 }}"
+            data-image="/media/r/{{ pr.img.0 }}"
             href="/pr/{{ pr._id }}"
             data-ga-event="click"
             data-ga-event-category="Ecommerce"

@@ -75,8 +75,6 @@ pr = {
         },
         'img': ['https://www.images-iherb.com/m/MLI-00952-15.jpg'],
         'save': 2,
-        'selfie': 'https://www.images-iherb.com/m/MLI-00952-15.jpg'
-
     },
     'dimensions': {
         'weight': {

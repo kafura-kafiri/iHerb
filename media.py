@@ -19,16 +19,20 @@ def serve_pil_image(pil_img):
     return send_file(img_io, mimetype='image/jpeg')
 
 
-def insert_img(image_bytes, o, sizes=('t', 'k', 'r', 'w', 'y', 'l'), mime_type='image/jpeg'):
+def insert_img(image_bytes, o, sizes=('b', 't', 'k', 'r', 'v', 'w', 'y', 'l'), mime_type='image/jpeg'):
     import io
     dec = {
+        'b': 50,
         't': 100,
         'k': 120,
         'r': 240,
         'w': 300,
+        'v': 600,
         'y': 800,
         'l': 1600,
     }
+    file_name = '{0}_{1}'.format('n', str(o))
+    fs.put(image_bytes, contentType=mime_type, filename=file_name)
     for width, size in [(dec[size], size) for size in sizes]:
         img = Image.open(io.BytesIO(image_bytes))
         wpercent = (width / float(img.size[0]))
@@ -50,10 +54,10 @@ def add_image():
             mime_type = mimetypes.guess_type(url)[0]
             r = requests.get(url, stream=True)
             return insert_img(r.raw.read(), o, mime_type=mime_type)
+        print(request.files)
         if 'file' in request.files:
             file = request.files['file']
             mime_type = mimetypes.guess_type(file.filename)[0]
-            print(file.filename)
             return insert_img(file.read(), o, mime_type=mime_type)
         raise Exception
     except Exception as e:
@@ -62,7 +66,7 @@ def add_image():
 
 @blue.route('/<size>/<_id>.<_format>')
 @blue.route('/<size>/<_id>')
-def get_image(_id, _format, size):
+def get_image(_id, size, _format=None):
     try:
         file_name = '{0}_{1}'.format(size, _id)
         im_stream = fs.get_last_version(filename=file_name)
