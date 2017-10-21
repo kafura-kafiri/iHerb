@@ -35,7 +35,7 @@
    <!-- CATWEB3FFV -->
    <!-- BuildNumber: 1.1.93250 -->
    <!--TranslationEnable:false-->
-   <title>Thorne Research, Basic Nutrients 2/Day, 60 Vegetarian Capsules - iHerb.com</title>
+   <title>{{ pr.title }} - {{ _('iHerb.com') }}</title>
    <meta name="keywords" content="Basic Nutrients 2/Day, 60 Veggie Caps,Thorne Research,693749002871,60 Veggie Caps"/>
    <link rel="image_src" href="https://www.images-iherb.com/m/THR-00287-5.jpg"/>
    <meta property="og:image" content="https://www.images-iherb.com/m/THR-00287-5.jpg"/>
@@ -156,7 +156,7 @@
    <i class="icon-exit share-email-close"></i>
 
    <div class="share-email-container" data-token="">
-      <div class="email-a-friend col-buffer-md">Email a Friend!</div>
+      <div class="email-a-friend col-buffer-md">{{ _('Email a Friend') }}!</div>
       <div class="row product-info">
          <div class="col-xs-7">
 
@@ -165,7 +165,7 @@
          </div>
          <div class="col-xs-17">
             <h3 class="title">
-               Thorne Research, Basic Nutrients 2/Day, 60 Vegetarian Capsules
+               {{ pr.title }}
             </h3>
             <div class="price">
                <div class='rating'><a class='stars'
@@ -173,34 +173,33 @@
                      class='icon-stars_45 full' title='4.7/5 - 48 Reviews'></i><i class='icon-stars_50 empty'></i></a><a
                      class='rating-count'
                      href='https://www.iherb.com/r/Thorne-Research-Basic-Nutrients-2-Day-60-Veggie-Caps/52954/?p=1'
-                     title='4.7/5 - 48 Reviews'><span>48</span> Reviews</span></a></div>
-               <span class="discount-price">$27.80</span>
-               <span class="list-price">$27.80</span>
-               <span class="total-savings">(Saved <span>$0.01</span>)</span>
+                     title='4.7/5 - 48 Reviews'><span>{{ _(pr.reviews.score.population) }}</span> {{ _('Reviews') }}</span></a></div>
+               <span class="discount-price">{{ _('$') }}{{ _(27.80) }}</span>
+               <span class="list-price">{{ _('$') }}{{ _(27.80) }}</span>
+               <span class="total-savings">({{ _('Saved') }} <span>{{ _('$') }}{{ _(0.01) }}</span>)</span>
             </div>
          </div>
       </div>
       <div class="row email-body">
          <div class="col-xs-24 input-field col-buffer-md">
             <input name="user-name" id="user-name" type="text" required="required"/>
-            <label name="user-name" for="user-name">Your Name</label>
+            <label name="user-name" for="user-name">{{ _('Your Name') }}</label>
          </div>
          <div class="col-xs-24 input-field col-buffer-xl">
             <input class="target-email" name="target-email" id="target-email" type="text" required="required"/>
-            <label name="target-email" for="target-email">Your Friend&#39;s Email Address</label>
-            <div class="incorrect-password" name="UserName" for="UserName">Invalid Email Address.</div>
+            <label name="target-email" for="target-email">{{ _("Your Friend&#39;s Email Address") }}</label>
+            <div class="incorrect-password" name="UserName" for="UserName">{{ _('Invalid Email Address.') }}</div>
          </div>
          <div class="col-xs-24 input-field col-buffer-md">
             <textarea name="personal-message" id="personal-message" required="required" maxlength="500"></textarea>
-            <label name="personal-message" for="personal-message">Personal Message</label>
+            <label name="personal-message" for="personal-message">{{ _('Personal Message') }}</label>
             <div class="text-right">
-               Optional (500 max characters)
+               {{ _('Optional (500 max characters)') }}
             </div>
          </div>
          <div class="col-xs-24 col-buffer-md">
             <div class=" submit-email">
-
-               <button class="btn btn-primary">Send Email</button>
+               <button class="btn btn-primary">{{ _('Send Email') }}</button>
             </div>
          </div>
       </div>
@@ -217,42 +216,36 @@
    </div>
 
    <div class="email-sent-confirmation">
-      <div class="email-a-friend col-buffer-md">Email a Friend!</div>
+      <div class="email-a-friend col-buffer-md">{{ _('Email a Friend!') }}</div>
       <div class="text-center">
          <i class="icon-circlecheckfat"></i>
          <p>
-            Thank you!
+            {{ _('Thank you!') }}
          </p>
          <p>
-            Your email is being processed.
+            {{ _('Your email is being processed.') }}
          </p>
       </div>
    </div>
-
-
 </div>
-
-
 <div class="product-grouping-wrapper">
    <article class="ga-product product-grouping-refresh" itemscope itemtype="http://schema.org/Product"
             itemid="https://www.iherb.com/pr/Thorne-Research-Basic-Nutrients-2-Day-60-Veggie-Caps/52954">
-
       {% include 'pr/top-chart.html' %}
       {% include 'pr/overview.html' %}
       <input type="hidden" class="qna-razor-properties"
              data-properties="{&quot;_productID&quot;:52954,&quot;_isEnabled&quot;:true,&quot;_ugcApiUrl&quot;:&quot;https://ugc-api.iherb.io&quot;,&quot;_productImageRetina&quot;:[&quot;https://www.images-iherb.com/t/THR-00287-5.jpg&quot;,&quot;https://www.images-iherb.com/t/THR-00287-6.jpg&quot;],&quot;_productImageUrl&quot;:&quot;https://www.images-iherb.com/m/THR-00287-5.jpg&quot;,&quot;_textCustomerNickname&quot;:null,&quot;_textCustomerProfileLink&quot;:null,&quot;_ugcToken&quot;:null,&quot;_textProductName&quot;:&quot;Thorne Research, Basic Nutrients 2/Day, 60 Vegetarian Capsules&quot;,&quot;_productUrl&quot;:&quot;https://www.iherb.com/pr/Thorne-Research-Basic-Nutrients-2-Day-60-Veggie-Caps/52954&quot;,&quot;_questionsForProductLink&quot;:&quot;https://www.iherb.com/qna/Thorne-Research-Basic-Nutrients-2-Day-60-Veggie-Caps/52954&quot;,&quot;_textHeaderTitle&quot;:&quot;Product Questions \u0026amp; Answers&quot;,&quot;_textHeaderTitleCount&quot;:&quot;{0}-{1} of {2} total&quot;,&quot;_textFilterBy&quot;:&quot;Show&quot;,&quot;_textAskQuestion&quot;:&quot;Ask a Question&quot;,&quot;_textAskQuestionDeniedMessage&quot;:&quot;In order to ask a question, you must be an iHerb Customer.&quot;,&quot;_textValidationMessage&quot;:&quot;Required field. {0} character maximum.&quot;,&quot;_textQuestionTopic&quot;:&quot;Choose a Topic&quot;,&quot;_textQuestionSubmittedTitle&quot;:&quot;Your Question is Submitted.&quot;,&quot;_textQuestionSubmittedMessage&quot;:&quot;Check back later to see if your question has been answered&quot;,&quot;_textPlaceholderWriteQuestion&quot;:&quot;Write a question&quot;,&quot;_textSubmit&quot;:&quot;Submit Question&quot;,&quot;_textCancel&quot;:&quot;Cancel&quot;,&quot;_titleQuestion&quot;:&quot;Question&quot;,&quot;_titleQuestions&quot;:&quot;Questions&quot;,&quot;_titleAnswers&quot;:&quot;Answer(s)&quot;,&quot;_textQuestionCountSingle&quot;:&quot;1 Question&quot;,&quot;_textQuestionCountMultiple&quot;:&quot;{0} Questions&quot;,&quot;_textNew&quot;:&quot;New!&quot;,&quot;_textPostedBy&quot;:&quot;Posted by \u003ca href=\&quot;{0}\&quot;\u003e{1}\u003c/a\u003e on {2}&quot;,&quot;_textSeeMoreAnswers&quot;:&quot;See more answers&quot;,&quot;_textCollapseAnswers&quot;:&quot;Collapse answers&quot;,&quot;_textWasAnswerHelpful&quot;:&quot;Was this answer helpful to you?&quot;,&quot;_textThanksFeedback&quot;:&quot;Thanks for your feedback!&quot;,&quot;_textReportAbuse&quot;:&quot;Report Abuse&quot;,&quot;_textViewAllQuestions&quot;:&quot;View all questions&quot;,&quot;_textYes&quot;:&quot;Yes&quot;,&quot;_textNo&quot;:&quot;No&quot;,&quot;_languageCode&quot;:&quot;en-US&quot;,&quot;_textBeFirstToAskQuestion&quot;:&quot;Be the first to ask a question.&quot;,&quot;_textBeFirstToAnswerQuestion&quot;:&quot;Be the first to answer this question.&quot;,&quot;_textNoResultsFromFilter&quot;:&quot;No results found. Try a different filter or ask a question.&quot;,&quot;_textiHerbCustomer&quot;:&quot;iHerb Customer&quot;,&quot;_textErrorMessage&quot;:&quot;Oops! We\u0027ve encountered a temporary error and could not complete your request. Please try again at a later time.&quot;}"/>
-
       <div class="qna-container">
          <div class="slug"></div>
       </div>
 
       <div class="popup-container qna-popup-message">
          <div class="popup-title">
-            iHerb Customer
+            {{ _('iHerb Customer') }}
          </div>
          <div class="popup-content">
-            An iHerb Customer has completed a transaction, and has accepted the <a
-               href="https://secure.iherb.com/rewards/termsandconditions">Terms & Conditions</a>
+            {{ _('An iHerb Customer has completed a transaction, and has accepted the') }} <a
+               href="https://secure.iherb.com/rewards/termsandconditions">{{ _('Terms & Conditions') }}</a>
          </div>
       </div>
       {% include 'pr/reviews.html' %}
@@ -267,20 +260,17 @@
 
 <script>
     ih.ga.prod.detail('THR-00287', 'Basic Nutrients 2/Day, 60 Vegetarian Capsules', 'Thorne Research', 'Supplements', null, '27.8', '780', null, null, null);
-
 </script>
-
-
 <div class="live-container home-module" style="display: none;">
    <div class="container-fluid">
       <div class="row">
          <div class="col-xs-24">
             <div class="title-container">
                     <span class="h4">
-                        <bdi>iHerb <strong class="text-uppercase title">Live</strong></bdi>
+                        <bdi>{{ _('iHerb') }} <strong class="text-uppercase title">{{ _('Live') }}</strong></bdi>
                     </span>
                <span class="subtitle">
-                        Check out what others are buying in real time!
+                        {{ _('Check out what others are buying in real time!') }}
                     </span>
                <div class="navigation-container">
                         <span class="iherb-live-navigation scroll-left disable-navigation disabled-style">
@@ -392,8 +382,5 @@
         })();
 
 </script>
-
-
 </body>
-
 </html>

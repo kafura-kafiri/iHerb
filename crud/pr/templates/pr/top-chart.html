@@ -1,22 +1,24 @@
 <div class="container">
          <div id="pagetitlewrapper">
             <div id="breadCrumbs">
-
-               <a href="/BrandsAZ">Brands A-Z</a>
-               <a href="https://www.iherb.com/c/Thorne-Research" class="last">Thorne Research</a>
+               <a href="/BrandsAZ">{{ _('Brands A-Z') }}</a>
+               <a href="https://www.iherb.com/c/Thorne-Research" class="last">{{ pr.brand.title }}</a>
                <br/>
-               <a href="https://www.iherb.com/c/Categories">Categories</a>
-               <a href="https://www.iherb.com/c/Vitamins">Vitamins</a>
-               <a href="https://www.iherb.com/c/Multivitamins" class="last">Multivitamins</a>
+               <a href="https://www.iherb.com/c/Categories">{{ _('Categories') }}</a>
+               {% for _category in pr.categories %}
+                  {% for _title in _category.ancestors %}
+                     <a href="https://www.iherb.com/c/Vitamins">{{ _title }}</a>
+                  {% endfor %}
+                  <a href="https://www.iherb.com/c/Vitamins">{{ _category.title }}</a>
+               {% endfor %}
                <br/>
-
             </div>
          </div>
          <meta id="web-category" itemprop="category" content="Supplements"/>
          <div class="product-detail-container ga-product clearfix">
             <div class="full-image-container container" id="image-viewer">
                <h1>{{ pr.title }}</h1>
-               <div>By <a href="{{ pr.brand.link }}">{{ pr.brand.title }}</a></div>
+               <div>{{ _('By') }} <a href="{{ pr.brand.link }}">{{ pr.brand.title }}</a></div>
                <div class="row">
                   <div class="wrapper col-xs-20">
                      <div id="" class="img-slider">
@@ -59,14 +61,14 @@
                <section class="column fluid product-description-title visible-xs visible-sm">
                   <div id="product-summary-header">
                      <div class="product-past-purchased hide hidden-md hidden-lg hidden-xl">
-                        <p>You purchased this item on <span class="product-ordered-date"></span></p>
-                        <a href="" class="product-ordered-link">View this order</a>
+                        <p>{{ _('You purchased this item on') }} <span class="product-ordered-date"></span></p>
+                        <a href="" class="product-ordered-link">{{ _('View this order') }}</a>
                      </div>
 
 
                      <h1 itemprop="name" id="name">{{ pr.title }}</h1>
                      <div itemscope itemprop="brand" itemtype="http://schema.org/Brand" id="brand">
-                        <bdi>By</bdi>
+                        <bdi>{{ _('By') }}</bdi>
                         <a href="{{ pr.brand.link }}">
                            <span itemprop="name">
                               <bdi>{{ pr.brand.title }}</bdi>
@@ -94,11 +96,11 @@
                            href='https://www.iherb.com/r/Thorne-Research-Basic-Nutrients-2-Day-60-Veggie-Caps/52954/?p=1'
                            title='4.7/5 - 48 Reviews'
                         >
-                           <span itemprop='reviewCount'>48</span>
-                           <span> Reviews</span>
+                           <span itemprop='reviewCount'>{{ _(48) }}</span>
+                           <span> {{ _('Reviews') }}</span>
                         </a>
                         <span class='product-write-review hide'>
-                           | <a href='' class='product-review-link'>Write a Review</a>
+                           | <a href='' class='product-review-link'>{{ _('Write a Review') }}</a>
                         </span>
                      </div>
                   </div>
@@ -135,14 +137,14 @@
                <div id="product-summary-header">
 
                   <div class="product-past-purchased hide hidden-md hidden-lg hidden-xl">
-                     <p>You purchased this item on <span class="product-ordered-date"></span></p>
-                     <a href="" class="product-ordered-link">View this order</a>
+                     <p>{{ _('You purchased this item on') }} <span class="product-ordered-date"></span></p>
+                     <a href="" class="product-ordered-link">{{ _('View this order') }}</a>
                   </div>
 
 
                   <h1 itemprop="name" id="name">{{ pr.title }}</h1>
                   <div itemscope itemprop="brand" itemtype="http://schema.org/Brand" id="brand">
-                     <bdi>By</bdi>
+                     <bdi>{{ _('By') }}</bdi>
                      <a href="{{ pr.brand.link }}">
                         <span itemprop="name">
                            <bdi>{{ pr.brand.title }}</bdi>
@@ -161,9 +163,9 @@
                            class='rating-count'
                            href='https://www.iherb.com/r/Thorne-Research-Basic-Nutrients-2-Day-60-Veggie-Caps/52954/?p=1'
                            title='4.7/5 - 48 Reviews'
-                     ><span>48</span> Reviews</span>
+                     ><span>{{ _(48) }}</span> {{ _('Reviews') }}</span>
                   </a> <span class='product-write-review hide'>| <a href=''
-                                                                    class='product-review-link'>Write a Review</a></span>
+                                                                    class='product-review-link'>{{ _('Write a Review') }}</a></span>
                   </div>
                </div>
             </section>
@@ -171,7 +173,7 @@
             <section class="column fluid product-description-stock-status">
                <div id="stock-status">
                   <strong class="text-primary">
-                     In Stock
+                     {{ _('In Stock') }}
                   </strong>
                </div>
             </section>
@@ -200,7 +202,7 @@
                         <span class="product-weight">
                            {{ pr.dimensions.weight.shipping }} {{ lang.dimensions.weight }}
                         </span>
-                        <div class="dimensions-units-popup weight">Switch to Metric units</div>
+                        <div class="dimensions-units-popup weight">{{ _('Switch to Metric units') }}</div>
                      </div>
                      <div id="shipping-weight-message" class="popup-container shipping-weight-message">
                         <div class="popup-title">{{ lang.shipping_weight.title }}</div>
@@ -219,7 +221,7 @@
                                 <span id="dimensions">{{ pr.dimensions.x }} x {{ pr.dimensions.y }} x {{ pr.dimensions.z }} {{ lang.dimensions.length }}</span>,
                                 <span id="actual-weight">{{ pr.dimensions.weight.pure }} {{ lang.dimensions.weight }}</span>
                         </span>
-                        <div class="dimensions-units-popup dimensions">Switch to Metric units</div>
+                        <div class="dimensions-units-popup dimensions">{{ _('Switch to Metric units') }}</div>
                      </div>
                   </li>
 
@@ -313,7 +315,7 @@
                         <form id="form-add-both-to-cart" action="https://checkout.iherb.com/pro/addbothtocart"
                               method="post">
                            <div class="out-of-stock-message-add-both info-popup">
-                              <p>Sorry, this product is no longer in stock.</p>
+                              <p>{{ _('Sorry, this product is no longer in stock.') }}</p>
                            </div>
                            <button id="btn-add-both-to-cart" class="btn btn-primary" name="buy2">Add Both to Cart
                            </button>
@@ -327,8 +329,8 @@
          </div>
          <div id="customer-related-products" class="carousel-container">
             <div id="customer-related-products-tabs" class="section-title-border">
-               <div id="customer-also-bought" class="">Customers Also Bought</div>
-               <div id="related-products" class="">Related Products</div>
+               <div id="customer-also-bought" class="">{{ _('Customers Also Bought') }}</div>
+               <div id="related-products" class="">{{ _('Related Products') }}</div>
             </div>
             <div class="leaf-carousel-loader">
                <figure class="spinner carousel-loader">
@@ -419,10 +421,6 @@
                      </div>
                   </div>
                </div>
-
-
             </div>
          </div>
-
-
       </div>

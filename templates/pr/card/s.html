@@ -46,9 +46,9 @@
                     <div class="shipping-container">
                             <i class="icon-shipping-saver-thick"></i>
                             <span class="shipping-saver">
-                                Shipping Saver
+                                {{ _('Shipping Saver') }}
                             </span>
-                            <span class="question-mark popup-shipping-saver">?</span>
+                            <span class="question-mark popup-shipping-saver">{{ _('?') }}</span>
                 </div>
                 <div class="status-container">
                    <form class="form-add-to-cart" action="https://checkout.iherb.com/pro/addtocart" method="post">
@@ -60,7 +60,7 @@
                               data-ga-event-category="Ecommerce"
                               data-ga-event-action="addToCart"
                               data-ga-event-label="Product List_ListView">
-                         <bdi>Add to Cart</bdi>
+                         <bdi>{{ _('Add to Cart') }}</bdi>
                       </button>
                       <input type="hidden" name="pid" value="{{ pr._id }}" />
                       <input type="hidden" name="part" value="ELF-81411" />

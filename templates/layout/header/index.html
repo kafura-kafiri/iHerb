@@ -1,3 +1,33 @@
+<script src="{{ url_for( 'static', filename='jquery/colorbox/jquery.colorbox-min.js' ) }}"></script>
+{% macro colorbox(name) -%}
+   <div id="{{ name }}" href="#{{ name }}-content" style='display:none'>
+      <div id='{{ name }}-content'>
+         {{ caller() }}
+      </div>
+   </div>
+<script>
+   var show_{{ name }};
+   $(function() {
+      $("#{{ name }}").colorbox({
+         inline:true,
+         width:"33%",
+         width: 485,
+         maxWidth: "98%",
+         initialHeight: 450,
+         height: 460,
+         scrolling: false,
+         opacity: .5,
+         open: false,
+         scrolling: false,
+      });
+
+      show_{{ name }} = function() {
+         $("#{{ name }}").colorbox({ open: true });
+      }
+   });
+</script>
+{%- endmacro %}
+
 <header>
    <div class="banner-alert hide">
       <div class="container">
@@ -5,8 +35,8 @@
             <div class="col-xs-24 text-center">
                <div class="content">
                   <i class="icon-truck"></i>
-                  <strong class="text-uppercase">Free Shipping</strong><span>&nbsp;</span><strong>for orders over
-                  <bdi>$20</bdi>
+                  <strong class="text-uppercase">{{ _('Free Shipping') }}</strong><span>&nbsp;</span><strong>{{ _('for orders over') }}
+                  <bdi>{{ _('$') }}{{ _('20') }}</bdi>
                </strong>
                   <i class="icon-circlex free-shipping-close"></i>
                </div>
@@ -32,10 +62,10 @@
                               <span class="flag dd-selected-image flag-sprite us"></span>
                            </div>
                            <div class="language-select hidden-xs hidden-sm">
-                              <span>EN</span>
+                              <span>{{ _('EN') }}</span>
                            </div>
                            <div class="currency-select hidden-xs hidden-sm">
-                              <span>USD</span>
+                              <span>{{ _('USD') }}</span>
                            </div>
                            <div class="ccl-arrow">
                               <span><i class="icon-checkoutarrow"></i></span>
@@ -48,7 +78,7 @@
                      <div id="add-cart-new-img" style="display: none">
                         <div class="image-coming-soon mini"><i class="icon-iherbleafcircle"></i>
                            <div>
-                              <bdi>Image Coming Soon</bdi>
+                              <bdi>{{ _('Image Coming Soon') }}</bdi>
                            </div>
                         </div>
                      </div>
@@ -60,7 +90,7 @@
                            <section class="add-to-cart-header">
                               <div>
                                  <i class="icon-addedtocartcheck"></i>
-                                 <span class="add-to-cart-title">Added to Cart</span>
+                                 <span class="add-to-cart-title">{{ _('Added to Cart') }}</span>
                                  <span class="num-items"></span>
                               </div>
                            </section>
@@ -72,20 +102,20 @@
                                  <span class="title"></span>
                                  <div class="bundle-totals">
                                     <div class="row">
-                                       <span class="col-xs-12">Total:</span>
+                                       <span class="col-xs-12">{{ _('Total') }}:</span>
                                        <span class="col-xs-12 amount-total total-small text-right"></span>
                                     </div>
                                     <div class="row discount">
-                                       <span class="col-xs-12">Discount:</span>
+                                       <span class="col-xs-12">{{ _('Discount') }}:</span>
                                        <span class="col-xs-12 amount-discount total-small text-right"></span>
                                     </div>
                                     <div class="row together">
-                                       <span class="col-xs-12">Together:</span>
+                                       <span class="col-xs-12">{{ _('Together') }}:</span>
                                        <span class="col-xs-12 amount-together total-small text-right"></span>
                                     </div>
                                  </div>
                                  <div class="add-to-cart-totals">
-                                    <span class="quantity">Quantity: <span class="qty-amt"></span></span>
+                                    <span class="quantity">{{ _('Quantity') }}: <span class="qty-amt"></span></span>
                                     <div class="clearBoth"></div>
                                     <span class="pricing">
                         <span class="price"></span>
@@ -97,7 +127,7 @@
                            <section class="add-to-cart-total-content add-to-cart-buttons">
                               <div class="cart-total-amount">
                                  <div class="title">
-                                    <bdi>Cart Total:</bdi>
+                                    <bdi>{{ _('Cart Total') }}:</bdi>
                                  </div>
                                  <div id="popup-cart-subtotal"></div>
                                  <a class="go-to-checkout addToCartBtn btn-primary"
@@ -107,13 +137,13 @@
                                     data-ga-event-action="addToCartNotificationPreview"
                                     data-ga-event-label="CheckoutButton"
                                  >
-                                    Checkout
+                                    {{ _('Checkout') }}
                                  </a>
                               </div>
                            </section>
                            <section id="recommendCarousel" class="add-to-cart-extra hide">
                               <div class="title col-xs-24">
-                                 Customers Also Bought:
+                                 {{ _('Customers Also Bought') }}:
                               </div>
                               <div class="add-to-cart-related carousel-inner"></div>
                            </section>
@@ -122,28 +152,69 @@
 
                      <a id="cart-subtotal" href="https://checkout.iherb.com/EditCart"
                         class="iherb-header-amount float-right hidden-xs hidden-sm cart-hide ">
-                        <span>$0.00</span>
+                        <span>{{ _('$') }}{{ _('0.00') }}</span>
                      </a>
                      <div class="iherb-header-cart float-right">
                         <a href="https://checkout.iherb.com/EditCart">
                            <i class="icon-header_cart"></i>
                            <div id="cart-qty" class="iherb-header-cart-quantity cart-hide">
-                              <span>0</span>
+                              <span>{{ _('0') }}</span>
                            </div>
                         </a>
                      </div>
                      <script type="text/javascript">
                         (function(){function n(n){var t=document.getElementById("cart-qty"),i=/&bi=([^&]+)/g.exec(n);i&&(t.innerHTML=Number(i[1])>99?"99+":i[1],t.className.indexOf("cart-qty")>0||(t.className+=" cart-qty"),t.className=t.className.replace("cart-hide",""))}function t(n){var t=document.getElementById("cart-subtotal"),i=/&cbt=([^&]+)/g.exec(n);i&&(t.innerHTML=decodeURIComponent(i[1]).replace(/\+/g," "),t.setAttribute("title",decodeURIComponent(i[1])),t.className.indexOf("cart-click cart-subtotal")>0||(t.className+=" cart-click cart-subtotal"),t.className=t.className.replace("cart-hide",""))}function r(n){var i=/&emptycart=[^&]*/g.exec(n),t;i&&(t=location.hostname.split("."),document.cookie="ihr-temse="+n.replace(i[0],"")+"; expires=Session; domain=."+t[1]+"."+t[2]+"; path=/")}function u(){var n=navigator.cookieEnabled?!0:!1;return typeof navigator.cookieEnabled!="undefined"||n||(document.cookie="testcookie",n=document.cookie.indexOf("testcookie")!=-1?!0:!1),n?!0:!1}window.displayCart=function(){var e=document.cookie.split("; "),u={},f;for(i=e.length-1;i>=0;i--)f=e[i].split("="),u[f.shift()]=f.join("=");t(u["ihr-temse"]);n(u["ihr-temse"]);r(u["ihr-temse"])};u()&&window.displayCart()})()
                      </script>
-                     <div id="iherb-account" class="iherb-header-account float-right">
+                              {% call colorbox('login') %}
+                              <div style="padding: 13px 21px 21px 21px">
+                                 <div class="ui middle aligned center aligned grid">
+                                   <div class="column">
+                                     <h2 class="ui teal image header"> <!-- {{ url_for( 'static', filename='img/logo.png' ) }}  https://a0.muscache.com/airbnb/static/icons/airbnb-0611901eac33ccfa5e93d793a2e21f09.svg -->
+                                       <img src="https://a0.muscache.com/airbnb/static/icons/airbnb-0611901eac33ccfa5e93d793a2e21f09.svg" class="image">
+                                       <div class="content">
+                                         Log-in to your account
+                                       </div>
+                                     </h2>
+                                     <form action="/login" class="ui large form" method="post">
+                                       <input name="redirect" type="hidden" value="{{ redirect }}">
+                                       <div class="ui stacked segment">
+                                         <div class="field">
+                                           <div class="ui left icon input">
+                                             <i class="user icon"></i>
+                                             <input type="text" name="email" placeholder="E-mail address">
+                                           </div>
+                                         </div>
+                                         <div class="field">
+                                           <div class="ui left icon input">
+                                             <i class="lock icon"></i>
+                                             <input type="password" name="pw" placeholder="Password">
+                                           </div>
+                                         </div>
+                                         <button class="ui fluid large teal submit button">Login</button>
+                                       </div>
+
+                                       <div class="ui error message"></div>
+
+                                     </form>
+
+                                     <div class="ui message">
+                                       New to us? <a href="#">Sign Up</a>
+                                     </div>
+                                   </div>
+                                 </div>
+                              </div>
+                              {% endcall %}
+                     <div id="iherb-accounttt" class="iherb-header-account float-right {{ 'iherb-header-account-signed-in' if current_user.is_authenticated else '' }}">
                         <div class="iherb-header-account-sign-in">
                                     <span class="hidden-xs hidden-sm">
-                                        <label class="iherb-header-signed-out sign-in">
-                                            Sign In
+                                        <label onclick="show_login()" class="iherb-header-signed-out sign-in">
+                                            {{ _('Sign In') }}
                                         </label>
                                         <bdi>
                                             <label class="iherb-header-signed-in iherb-header-account-name">
-
+                                               {% if current_user.is_authenticated %}
+                                                   {{ current_user.email }}
+                                               {% endif %}
                                             </label>
                                         </bdi>
                                     </span>
@@ -153,38 +224,38 @@
                                     </span>
                         </div>
                         <div class="iherb-header-account-my-account my-account-button hidden-xs hidden-sm">
-                           My Account
+                           {{ _('My Account') }}
                         </div>
                         <div class="iherb-header-menu iherb-header-menu-account my-account-menu">
                            <ul class="my-account-links">
                               <li>
                                  <a href="https://checkout.iherb.com/checkout/profile">
-                                    My Account
+                                    {{ _('My Account') }}
                                  </a>
                               </li>
                               <li>
                                  <a href="https://secure.iherb.com/myaccount/wishlist/">
-                                    Wish List
+                                    {{ _('Wish List') }}
                                  </a>
                               </li>
                               <li>
                                  <a href="https://secure.iherb.com/myaccount/reviewmyproducts/">
-                                    Reviews
+                                    {{ _('Reviews') }}
                                  </a>
                               </li>
                               <li>
                                  <a href="https://secure.iherb.com/myaccount/publicprofile/">
-                                    My Page
+                                    {{ _('My Page') }}
                                  </a>
                               </li>
                               <li>
                                  <a href="https://secure.iherb.com/rewards/overview/">
-                                    Rewards
+                                    {{ _('Rewards') }}
                                  </a>
                               </li>
                               <li>
                                  <a href="https://secure.iherb.com/myaccount/messagecenter/">
-                                    Messages
+                                    {{ _('Messages') }}
                                     <span class="message-counter pull-right badge badge-pill badge-small badge-danger"></span>
                                  </a>
                               </li>
@@ -192,17 +263,17 @@
                            <div class="separator"></div>
                            <ul class="action-container">
                               <li class="iherb-header-signed-in">
-                                 <a href="/account/logoff/" onclick="sessionStorage.clear()"
+                                 <a href="/logout?redirect={{ redirect }}" onclick="sessionStorage.clear()"
                                     class="btn btn-primary btn-block">
-                                    Sign Out
+                                    {{ _('Sign Out') }}
                                  </a>
                               </li>
                               <li class="iherb-header-signed-out dropdown-createacc-link">
-                                 Create an Account
+                                 {{ _('Create an Account') }}
                               </li>
                               <li>
-                                 <a href="#" class="iherb-header-signed-out btn btn-primary btn-block sign-in">
-                                    Sign In
+                                 <a onclick="show_login()" href="#" class="iherb-header-signed-out btn btn-primary btn-block sign-in">
+                                    {{ _('Sign In') }}
                                  </a>
                               </li>
                            </ul>
@@ -210,7 +281,7 @@
                      </div>
                      <a href="https://secure.iherb.com/info/Contact" class="iherb-header-help-link float-right"
                         data-ga-event="click" data-ga-event-category="Ecommerce" data-ga-event-label="Click - 24/7 Help"
-                        data-ga-event-action="Contact US">24/7 Help</a>
+                        data-ga-event-action="Contact US">{{ _('24/7') }} {{ _('Help') }}</a>
                   </div>
                   {% include 'layout/header/search.html' %}
                </div>
@@ -221,45 +292,43 @@
          <div class="container-fluid">
             <div class="row">
                <div class="col-xs-24">
-
-
                   <div class="sticky-header-menu container-fluid">
                      <div class="row">
                         <div class="sticky-header-menu-categories col-xs-6 col-lg-4">
                            <ul class="sticky-header-menu-categories-list">
                               <li data-sticky-header-menu-category="0"
                                   class="sticky-header-menu-categories-list-item active">
-                                 <a href="/BrandsAZ">Brands</a>
+                                 <a href="/BrandsAZ">{{ _('Brands') }}</a>
                               </li>
                               <li data-sticky-header-menu-category="1" class="sticky-header-menu-categories-list-item">
-                                 <a href="/c/supplements">Supplements</a>
+                                 <a href="/c/supplements">{{ _('Supplements') }}</a>
                               </li>
                               <li data-sticky-header-menu-category="2" class="sticky-header-menu-categories-list-item">
-                                 <a href="/c/herbs">Herbs</a>
+                                 <a href="/c/herbs">{{ _('Herbs') }}</a>
                               </li>
                               <li data-sticky-header-menu-category="3" class="sticky-header-menu-categories-list-item">
-                                 <a href="/c/bath-beauty">Bath</a>
+                                 <a href="/c/bath-beauty">{{ _('Bath') }}</a>
                               </li>
                               <li data-sticky-header-menu-category="4" class="sticky-header-menu-categories-list-item">
-                                 <a href="/c/beauty-bath">Beauty</a>
+                                 <a href="/c/beauty-bath">{{ _('Beauty') }}</a>
                               </li>
                               <li data-sticky-header-menu-category="5" class="sticky-header-menu-categories-list-item">
-                                 <a href="/c/food-grocery-items">Grocery</a>
+                                 <a href="/c/food-grocery-items">{{ _('Grocery') }}</a>
                               </li>
                               <li data-sticky-header-menu-category="6" class="sticky-header-menu-categories-list-item">
-                                 <a href="/c/children-s-health">Baby</a>
+                                 <a href="/c/children-s-health">{{ _('Baby') }}</a>
                               </li>
                               <li data-sticky-header-menu-category="7" class="sticky-header-menu-categories-list-item">
-                                 <a href="/c/sports-fitness-athletic">Sports</a>
+                                 <a href="/c/sports-fitness-athletic">{{ _('Sports') }}</a>
                               </li>
                               <li data-sticky-header-menu-category="8" class="sticky-header-menu-categories-list-item">
-                                 <a href="/c/healthy-home">Home</a>
+                                 <a href="/c/healthy-home">{{ _('Home') }}</a>
                               </li>
                               <li data-sticky-header-menu-category="9" class="sticky-header-menu-categories-list-item">
-                                 <a href="/c/pets">Pets</a>
+                                 <a href="/c/pets">{{ _('Pets') }}</a>
                               </li>
                               <li data-sticky-header-menu-category="10" class="sticky-header-menu-categories-list-item">
-                                 <a href="/info/links">Conditions</a>
+                                 <a href="/info/links">{{ _('Conditions') }}</a>
                               </li>
                            </ul>
                         </div>
@@ -597,20 +666,19 @@
                               </ul>
                            </div>
                            <div class="sticky-header-menu-navigation-containers">
-
                            </div>
                            <div class="sticky-header-menu-navigation-footer clearfix text-center">
                               <a href="https://healthlibrary.epnet.com/GetContent.aspx?token=e0498803-7f62-4563-8d47-5fe33da65dd4&chunkiid=33800"
-                                 target="_blank">Conditions</a>
+                                 target="_blank">{{ _('Conditions') }}</a>
                               <a href="https://healthlibrary.epnet.com/GetContent.aspx?token=e0498803-7f62-4563-8d47-5fe33da65dd4&chunkiid=33802"
-                                 target="_blank">Herbs and Supplements</a>
+                                 target="_blank">{{ _('Herbs and Supplements') }}</a>
                               <a href="https://healthlibrary.epnet.com/GetContent.aspx?token=e0498803-7f62-4563-8d47-5fe33da65dd4&chunkiid=33801"
-                                 target="_blank">Drug Interactions</a>
+                                 target="_blank">{{ _('Drug Interactions') }}</a>
                               <a href="http://cms.herbalgram.org/herbstream/iherb/Herbalgram/index.html"
-                                 target="_blank">HerbalGram</a>
-                              <a href="https://www.iherb.com/blog">iHerb Blog</a>
-                              <a href="https://www.iherb.com/info/DoctorMurray">Dr. Murray</a>
-                              <a href="https://www.iherb.com/info/links">All Links &#187;</a>
+                                 target="_blank">{{ _('HerbalGram') }}</a>
+                              <a href="https://www.iherb.com/blog">{{ _('iHerb Blog') }}</a>
+                              <a href="https://www.iherb.com/info/DoctorMurray">{{ _('Dr. Murray') }}</a>
+                              <a href="https://www.iherb.com/info/links">{{ _('All Links') }} &#187;</a>
                            </div>
                         </div>
                      </div>
@@ -619,17 +687,17 @@
                <div class="col-xs-20 col-sm-20 col-md-14 col-lg-8">
                   <ul class="iherb-header-navigation">
                      <li class="iherb-header-navigation-dropdown" data-iherb-header-navigation-dropdown="categories">
-                        Categories
+                        {{ _('Categories') }}
                      </li>
                      <li class="iherb-header-navigation-dropdown" data-iherb-header-navigation-dropdown="brands">
-                        Brands
+                        {{ _('Brands') }}
                      </li>
                      <li class="iherb-header-navigation-dropdown" data-iherb-header-navigation-dropdown="conditions">
-                        Conditions
+                        {{ _('Conditions') }}
                      </li>
                      <li class="iherb-header-navigation-dropdown hidden-lg hidden-xl"
                          data-iherb-header-navigation-dropdown="specials">
-                        Specials
+                        {{ _('Specials') }}
                         <div class="iherb-header-menu iherb-header-menu-specials">
                            <ul>
                               <li>
@@ -637,7 +705,7 @@
                                  <a href="https://www.iherb.com/New-Products" data-ga-event="click"
                                     data-ga-event-category="Ecommerce" data-ga-event-label="New LP"
                                     data-ga-event-action="New">
-                                    New
+                                    {{ _('New') }}
                                  </a>
                               </li>
                               <li>
@@ -645,7 +713,7 @@
                                  <a href="https://www.iherb.com/TopSellers" data-ga-event="click"
                                     data-ga-event-category="Ecommerce" data-ga-event-label="Best Sellers LP"
                                     data-ga-event-action="Best Sellers">
-                                    Best Sellers
+                                    {{ _('Best Sellers') }}
                                  </a>
                               </li>
                               <li>
@@ -653,7 +721,7 @@
                                  <a href="https://www.iherb.com/specials" data-ga-event="click"
                                     data-ga-event-category="Ecommerce" data-ga-event-label="Specials LP"
                                     data-ga-event-action="Specials">
-                                    Specials
+                                    {{ _('Specials') }}
                                  </a>
                               </li>
                               <li>
@@ -661,7 +729,7 @@
                                  <a href="https://www.iherb.com/Trial-Pricing" data-ga-event="click"
                                     data-ga-event-category="Ecommerce" data-ga-event-label="Try&Save LP"
                                     data-ga-event-action="Try&Save">
-                                    Trial Items
+                                    {{ _('Trial Items') }}
                                  </a>
                               </li>
                            </ul>
@@ -675,7 +743,7 @@
                         <i class="icon-header_new"></i>
                         <a href="https://www.iherb.com/New-Products" data-ga-event="click"
                            data-ga-event-category="Ecommerce" data-ga-event-label="New LP" data-ga-event-action="New">
-                           New
+                           {{ _('New') }}
                         </a>
                      </li>
                      <li>
@@ -683,7 +751,7 @@
                         <a href="https://www.iherb.com/TopSellers" data-ga-event="click"
                            data-ga-event-category="Ecommerce" data-ga-event-label="Best Sellers LP"
                            data-ga-event-action="Best Sellers">
-                           Best Sellers
+                           {{ _('Best Sellers') }}
                         </a>
                      </li>
                      <li>
@@ -691,7 +759,7 @@
                         <a href="https://www.iherb.com/specials" data-ga-event="click"
                            data-ga-event-category="Ecommerce" data-ga-event-label="Specials LP"
                            data-ga-event-action="Specials">
-                           Specials
+                           {{ _('Specials') }}
                         </a>
                      </li>
                      <li>
@@ -699,7 +767,7 @@
                         <a href="https://www.iherb.com/Trial-Pricing" data-ga-event="click"
                            data-ga-event-category="Ecommerce" data-ga-event-label="Try&Save LP"
                            data-ga-event-action="Try&Save">
-                           Trial Items
+                           {{ _('Trial Items') }}
                         </a>
                      </li>
                   </ul>
@@ -710,9 +778,8 @@
                        data-ga-event-label="Share-Header">
                      <i class="icon-sharefilled"></i>
                      <strong class="hidden-xs hidden-sm">
-                        Share
+                        {{ _('Share') }}
                      </strong>
-
                      <div class="share-wrapper">
                         <div id="share-page-container" class="container ">
                            <section class="share-page-arrow">
@@ -726,23 +793,21 @@
                                     <div class="row">
                                        <div class="col-xs-24">
                                           <input type="hidden" name="isLoggedIn" value="false"/>
-
-
-                                          <div class="not-signed-in title-text">Copy and Share This Page</div>
+                                          <div class="not-signed-in title-text">{{ _('Copy and Share This Page') }}</div>
 
                                           <div class="signed-in hide">
                                              <div class="alert-signed-in text-primary">
-                                                <i class="icon-circlecheck"></i><strong>You are now signed in!</strong>
+                                                <i class="icon-circlecheck"></i><strong>{{ _('You are now signed in') }}!</strong>
                                              </div>
                                              <p class="copy-share-text">
-                                                Copy and share this list with your Rewards code <span
-                                                   class="coupon-code"></span> attached. <br/>More about <a
-                                                   href="https://www.iherb.com/info/rewards" title="Rewards Code">Rewards</a>.
+                                                {{ _('Copy and share this list with your Rewards code') }} <span
+                                                   class="coupon-code"></span> {{ _('attached') }}. <br/>{{ _('More about') }} <a
+                                                   href="https://www.iherb.com/info/rewards" title="Rewards Code">{{ _('Rewards') }}</a>.
                                              </p>
 
                                              <p class="copy-share-text no-coupon-code hide">
-                                                Copy and share this page. <br/>More about <a
-                                                   href="https://www.iherb.com/info/rewards" title="Rewards Code">Rewards</a>.
+                                                {{ _('Copy and share this page') }}. <br/>{{ _('More about') }} <a
+                                                   href="https://www.iherb.com/info/rewards" title="Rewards Code">{{ _('Rewards') }}</a>.
                                              </p>
                                           </div>
                                        </div>
@@ -752,7 +817,7 @@
                                           <input id="share-url" type="text" readonly/>
                                        </div>
                                        <div class="col-xs-8">
-                                          <button class="btn btn-primary btn-full copy-link">Copy</button>
+                                          <button class="btn btn-primary btn-full copy-link">{{ _('Copy') }}</button>
                                        </div>
                                     </div>
                                     <div class="row">
@@ -761,7 +826,7 @@
                                              <form class="check-shorturl">
                                                 <label>
                                                    <input type="checkbox"/>
-                                                   <span>Shorten URL</span>
+                                                   <span>{{ _('Shorten URL') }}</span>
                                                 </label>
                                              </form>
                                           </div>
@@ -805,27 +870,25 @@
                                     </div>
                                     <div class="col-xs-16">
                                        <p class="col-buffer-xs">
-                                          For iHerb customers &mdash; Share this page with others and save even more!
+                                          {{ _('For iHerb customers &mdash; Share this page with others and save even more!') }}
                                        </p>
                                        <div class="share-sign-in">
 
                                           <a href="https://checkout.iherb.com/account/login/?referrerRedirect=true"
-                                             title="Sign In">Sign in</a> or <a href="https://www.iherb.com/info/rewards"
-                                                                               title="Read More">Read More</a>.
+                                             title="Sign In">{{ _('Sign in') }}</a> {{ _('or') }} <a href="https://www.iherb.com/info/rewards"
+                                                                               title="Read More">{{ _('Read More') }}</a>.
                                        </div>
                                     </div>
                                  </div>
                               </div>
-
                            </section>
                         </div>
                      </div>
-
                   </div>
                   <div class="iherb-header-message float-right hidden-xs hidden-sm">
                      <a href="https://www.iherb.com/info/about">
                                     <span>
-                                        World's Best Value!
+                                        {{ _("World's Best Value!") }}
                                     </span>
                      </a>
                   </div>

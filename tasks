@@ -1,16 +1,20 @@
-templates best practice to lan > done
-realise() <<
 
-sign in sign out to header.
 
-profile + wish_list
 
-reviews {
+
+sign in sign out to header. >>> tonight
+
+profile + wish_list >>> tomorrow night
+iHerb live >>> tomorrow last of night
+reviews { >>> tomorrow morning
     add
     delete
     ...
 }
-realise()
+realise<<
+show<<
+
+header.html >> id="iherb-account" -> id="iherb-accounttt"
 
 11c.js 9 matches .pagination -> .xpagination
 git fetch --all
