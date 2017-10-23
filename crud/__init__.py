@@ -77,18 +77,16 @@ def crud(blueprint, collection, skeleton={}, template='', load_document=lambda x
             document = obj2str(document)
             return render_template('crud/$$.html', **document)
         except Exception as e:
-            CSI = "\x1B[%sm"
-            print(CSI % '6;30;41' + "sorry I can't update let's bring some thing to show" + CSI % '0')
+            print("sorry I can't update let's bring some thing to show")
             try:
                 document = collection.find_one({'_id': _id})
                 if not document:
                     raise
                 document = obj2str(document)
-                return render_template('crud/$$.html', ctx=document)
             except Exception as e:
-                CSI = "\x1B[%sm"
-                print(CSI % '6;30;41' + "sorry I can't show any thing sorry for you" + CSI % '0')
+                print("sorry I can't show any thing sorry for you")
                 abort(404)
+            return render_template('crud/$$.html', ctx=document)
 
     @blueprint.route('/<_id>$', methods=['GET', 'POST'])
     #@login_required

@@ -185,6 +185,10 @@ dictionary = {
                                      Complex. Bororganic is a trademark of Albion International, Inc.<br/>""": '',
 
     'Search from over 35,000 products': 'از بین ۳۵۰۰۰ هزار محصول به جستوجو بپردازید',
+
+    'Star': 'ستاره',
+    'Yes': 'آره',
+    'No': 'نه'
 }
 
 
@@ -228,14 +232,12 @@ def trans(phrase):
         phrase = simplify(phrase)
         if phrase in dictionary:
             return dictionary[phrase]
-        print(CSI % '5;30;41' + "'" + _phrase + "': ''," + CSI % '0')
+        print((CSI % '5;30;41' + "'{}': '',".format(phrase) + CSI % '0').encode('utf-8'))
         return phrase
     import numbers
     if isinstance(phrase, numbers.Real):
-        print(CSI % '6;30;42' + "'" + 'an int i saw %f' % phrase + "': ''," + CSI % '0')
         return digify(phrase)
     else:
-        print(CSI % '35' + 'wtf what was that: %s' % phrase + CSI % '0')
         return phrase
 
 

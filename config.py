@@ -29,4 +29,6 @@ categories.drop_indexes()
 categories.create_index([("title", "text")])
 categories.create_index([("title", 1)])
 
+reviews = db['REVIEWS']
+
 orders = db['ORDERS']

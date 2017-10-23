@@ -8,7 +8,6 @@ from bson import ObjectId
 from config import products
 
 context = {
-    'redirect': 'views.homepage',
     'banner': [
         {
             'link': "/K-Beauty",

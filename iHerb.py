@@ -39,6 +39,8 @@ app.register_blueprint(category, url_prefix='/categories')
 from crud.order import blue as order
 app.register_blueprint(order, url_prefix='/orders')
 
+from crud.review import blue as review
+app.register_blueprint(review, url_prefix='/reviews')
 
 if __name__ == '__main__':
     app.run(port=5000)

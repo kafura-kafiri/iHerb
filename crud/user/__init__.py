@@ -17,5 +17,6 @@ def load_user(user):
     }
     return user, context
 
-blue = Blueprint('users', __name__,template_folder='../templates')
+
+blue = Blueprint('users', __name__,template_folder='templates')
 crud(blue, users, template='user/page', load_document=load_user)

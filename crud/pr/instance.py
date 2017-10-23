@@ -59,6 +59,8 @@ ctx = {
     }
 }
 
+from crud.review import init_structure
+
 pr = {
     'title': 'chamomile from lorem ipsum dolor 3/2 off road',
     'qnt': '60 Veggie Caps',
@@ -180,13 +182,7 @@ pr = {
             },
         ]
     },
-    'reviews': {
-        'score': {
-            'value': 4.5,
-            'population': 833,
-        },
-
-    },
+    'reviews': init_structure(),
     'img': [
         'https://www.images-iherb.com/y/THR-00287-6.jpg',
         'https://www.images-iherb.com/y/THR-00287-5.jpg',

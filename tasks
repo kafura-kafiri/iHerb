@@ -1,18 +1,22 @@
+--wsgi-disable-file-wrapper
+print() ascii << ./trans.py
 
+profile + wish_list >>> tomorrow
 
-
-
-sign in sign out to header. >>> tonight
-
-profile + wish_list >>> tomorrow night
-iHerb live >>> tomorrow last of night
-reviews { >>> tomorrow morning
-    add
-    delete
-    ...
+iHerb live >>> tonight without ractive just jquery.
+reviews {
+    update_structure <<
 }
 realise<<
 show<<
+
+
+
+
+
+
+
+
 
 header.html >> id="iherb-account" -> id="iherb-accounttt"
 

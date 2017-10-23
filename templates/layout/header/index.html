@@ -1,33 +1,3 @@
-<script src="{{ url_for( 'static', filename='jquery/colorbox/jquery.colorbox-min.js' ) }}"></script>
-{% macro colorbox(name) -%}
-   <div id="{{ name }}" href="#{{ name }}-content" style='display:none'>
-      <div id='{{ name }}-content'>
-         {{ caller() }}
-      </div>
-   </div>
-<script>
-   var show_{{ name }};
-   $(function() {
-      $("#{{ name }}").colorbox({
-         inline:true,
-         width:"33%",
-         width: 485,
-         maxWidth: "98%",
-         initialHeight: 450,
-         height: 460,
-         scrolling: false,
-         opacity: .5,
-         open: false,
-         scrolling: false,
-      });
-
-      show_{{ name }} = function() {
-         $("#{{ name }}").colorbox({ open: true });
-      }
-   });
-</script>
-{%- endmacro %}
-
 <header>
    <div class="banner-alert hide">
       <div class="container">
@@ -165,49 +135,10 @@
                      <script type="text/javascript">
                         (function(){function n(n){var t=document.getElementById("cart-qty"),i=/&bi=([^&]+)/g.exec(n);i&&(t.innerHTML=Number(i[1])>99?"99+":i[1],t.className.indexOf("cart-qty")>0||(t.className+=" cart-qty"),t.className=t.className.replace("cart-hide",""))}function t(n){var t=document.getElementById("cart-subtotal"),i=/&cbt=([^&]+)/g.exec(n);i&&(t.innerHTML=decodeURIComponent(i[1]).replace(/\+/g," "),t.setAttribute("title",decodeURIComponent(i[1])),t.className.indexOf("cart-click cart-subtotal")>0||(t.className+=" cart-click cart-subtotal"),t.className=t.className.replace("cart-hide",""))}function r(n){var i=/&emptycart=[^&]*/g.exec(n),t;i&&(t=location.hostname.split("."),document.cookie="ihr-temse="+n.replace(i[0],"")+"; expires=Session; domain=."+t[1]+"."+t[2]+"; path=/")}function u(){var n=navigator.cookieEnabled?!0:!1;return typeof navigator.cookieEnabled!="undefined"||n||(document.cookie="testcookie",n=document.cookie.indexOf("testcookie")!=-1?!0:!1),n?!0:!1}window.displayCart=function(){var e=document.cookie.split("; "),u={},f;for(i=e.length-1;i>=0;i--)f=e[i].split("="),u[f.shift()]=f.join("=");t(u["ihr-temse"]);n(u["ihr-temse"]);r(u["ihr-temse"])};u()&&window.displayCart()})()
                      </script>
-                              {% call colorbox('login') %}
-                              <div style="padding: 13px 21px 21px 21px">
-                                 <div class="ui middle aligned center aligned grid">
-                                   <div class="column">
-                                     <h2 class="ui teal image header"> <!-- {{ url_for( 'static', filename='img/logo.png' ) }}  https://a0.muscache.com/airbnb/static/icons/airbnb-0611901eac33ccfa5e93d793a2e21f09.svg -->
-                                       <img src="https://a0.muscache.com/airbnb/static/icons/airbnb-0611901eac33ccfa5e93d793a2e21f09.svg" class="image">
-                                       <div class="content">
-                                         Log-in to your account
-                                       </div>
-                                     </h2>
-                                     <form action="/login" class="ui large form" method="post">
-                                       <input name="redirect" type="hidden" value="{{ redirect }}">
-                                       <div class="ui stacked segment">
-                                         <div class="field">
-                                           <div class="ui left icon input">
-                                             <i class="user icon"></i>
-                                             <input type="text" name="email" placeholder="E-mail address">
-                                           </div>
-                                         </div>
-                                         <div class="field">
-                                           <div class="ui left icon input">
-                                             <i class="lock icon"></i>
-                                             <input type="password" name="pw" placeholder="Password">
-                                           </div>
-                                         </div>
-                                         <button class="ui fluid large teal submit button">Login</button>
-                                       </div>
-
-                                       <div class="ui error message"></div>
-
-                                     </form>
-
-                                     <div class="ui message">
-                                       New to us? <a href="#">Sign Up</a>
-                                     </div>
-                                   </div>
-                                 </div>
-                              </div>
-                              {% endcall %}
                      <div id="iherb-accounttt" class="iherb-header-account float-right {{ 'iherb-header-account-signed-in' if current_user.is_authenticated else '' }}">
                         <div class="iherb-header-account-sign-in">
                                     <span class="hidden-xs hidden-sm">
-                                        <label onclick="show_login()" class="iherb-header-signed-out sign-in">
+                                        <label onclick="document.location = '/login?prev_url=' + encodeURIComponent(window.location.href)" class="iherb-header-signed-out sign-in">
                                             {{ _('Sign In') }}
                                         </label>
                                         <bdi>
@@ -263,16 +194,16 @@
                            <div class="separator"></div>
                            <ul class="action-container">
                               <li class="iherb-header-signed-in">
-                                 <a href="/logout?redirect={{ redirect }}" onclick="sessionStorage.clear()"
+                                 <a onclick="document.location = '/logout?prev_url=' + encodeURIComponent(window.location.href)" {#href="/logout?redirect={{ redirect }}"#} {#onclick="sessionStorage.clear()"#}
                                     class="btn btn-primary btn-block">
                                     {{ _('Sign Out') }}
                                  </a>
                               </li>
-                              <li class="iherb-header-signed-out dropdown-createacc-link">
+                              <li onclick="document.location = '/signup?prev_url=' + encodeURIComponent(window.location.href)" class="iherb-header-signed-out dropdown-createacc-link">
                                  {{ _('Create an Account') }}
                               </li>
                               <li>
-                                 <a onclick="show_login()" href="#" class="iherb-header-signed-out btn btn-primary btn-block sign-in">
+                                 <a onclick="document.location = '/login?prev_url=' + encodeURIComponent(window.location.href)" {#href="/login?redirect={{ redirect }}"#} class="iherb-header-signed-out btn btn-primary btn-block sign-in">
                                     {{ _('Sign In') }}
                                  </a>
                               </li>

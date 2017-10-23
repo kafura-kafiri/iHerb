@@ -1,5 +1,5 @@
 from flask_login import LoginManager, login_required, UserMixin, current_user, login_user, logout_user
-from flask import redirect, request, url_for, Blueprint
+from flask import redirect, request, url_for, Blueprint, render_template
 from config import users
 
 
@@ -40,22 +40,38 @@ def setup(app):
     @app.route('/login', methods=['GET', 'POST'])
     def login():
         if request.method == 'GET':
-            return '''
+            _redirect, _redirect_url, ctx = '', '', {}
+            if 'redirect' in request.values:
+                _redirect = request.values['redirect']
+                ctx['redirect'] = _redirect
+                _redirect = "<input type='hidden' name='redirect' id='redirect' value='{}'></input>".format(_redirect)
+            elif 'prev_url' in request.values:
+                _redirect_url = request.values['prev_url']
+                ctx['prev_url'] = _redirect_url
+                _redirect_url = "<input type='hidden' name='prev_url' id='prev_url' value='{}'></input>".format(_redirect_url)
+
+            return render_template('user/index.html', **ctx)
+
+            '''
                    <form action='login' method='POST'>
                     <input type='text' name='username' id='username' placeholder='username'></input>
                     <input type='password' name='password' id='password' placeholder='password'></input>
                     <input type='submit' name='submit'></input>
+                    {redirect}{redirect_url}
                    </form>
-                   '''
-
+                   '''.format(redirect=_redirect, redirect_url=_redirect_url)
+        print(request.form)
         username = request.form['username']
         json = users.find_one({'username': username})
         if _hash(request.form['password']) == json['password']:
             user = User(json)
             login_user(user)
+            print(request.form)
             if 'redirect' in request.form:
                 _redirect =request.form['redirect']
                 return redirect(url_for(_redirect))
+            elif 'prev_url' in request.form:
+                return redirect(request.form['prev_url'])
             else:
                 return redirect(url_for('protected'))
 
@@ -70,13 +86,22 @@ def setup(app):
     @app.route('/signup', methods=['GET', 'POST'])
     def signup():
         if request.method == 'GET':
+            _redirect, _redirect_url = '', ''
+            if 'redirect' in request.values:
+                _redirect = request.values['redirect']
+                _redirect = "<input type='hidden' name='redirect' id='redirect' value='{}'></input>".format(_redirect)
+            elif 'prev_url' in request.values:
+                _redirect_url = request.values['prev_url']
+                _redirect_url = "<input type='hidden' name='prev_url' id='prev_url' value='{}'></input>".format(
+                    _redirect_url)
             return '''
-                   <form action='signup' method='POST'>
-                    <input type='text' name='username' id='username' placeholder='username'></input>
-                    <input type='password' name='password' id='pw' placeholder='password'></input>
-                    <input type='submit' name='submit'></input>
-                   </form>
-                   '''
+                               <form action='signup' method='POST'>
+                                <input type='text' name='username' id='username' placeholder='username'></input>
+                                <input type='password' name='password' id='password' placeholder='password'></input>
+                                <input type='submit' name='submit'></input>
+                                {redirect}{redirect_url}
+                               </form>
+                               '''.format(redirect=_redirect, redirect_url=_redirect_url)
 
         username = request.form['username']
         password = hash(request.form['password'])
@@ -90,6 +115,8 @@ def setup(app):
         if 'redirect' in request.form:
             _redirect =request.form['redirect']
             return redirect(url_for(_redirect))
+        if 'prev_url' in request.form:
+            return redirect(request.form['prev_url'])
         else:
             return redirect(url_for('protected'))
 
@@ -106,5 +133,8 @@ def setup(app):
         if 'redirect' in request.values:
             _redirect = request.values['redirect']
             return redirect(url_for(_redirect))
+        elif 'prev_url' in request.values:
+            _redirect_url = request.values['prev_url']
+            return redirect(_redirect_url)
         else:
             return username
