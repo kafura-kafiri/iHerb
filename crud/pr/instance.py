@@ -1,15 +1,9 @@
-card = {
-    'title': '',
-    'value': {
-        'our': 300,
-    },  # ractive converts to price
-    'reviews': {
-        'score': {
-            'value': 4.5,
-            'population': 833,
-        }
-    },
-    'img': [],
+projection = {
+    'title': 1,
+    'value.our': 1,
+    'reviews.score.value': 1,
+    'reviews.score.population': 1,
+    'img': 1,
 }
 
 ctx = {

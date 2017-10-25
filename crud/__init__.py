@@ -6,7 +6,7 @@ from utility import request_json, obj2str, free_from_, str2obj
 from crud._services.analytics import analyze
 
 
-def crud(blueprint, collection, skeleton={}, template='', load_document=lambda x: (x, {}), redundancies={}):
+def crud(blueprint, collection, skeleton={}, projection=None, template='', load_document=lambda x: (x, {}), redundancies={}):
     @blueprint.route('/+', methods=['GET', 'POST'])
     @blueprint.route('/<_id>+', methods=['GET', 'POST'])
     #@login_required
@@ -42,18 +42,26 @@ def crud(blueprint, collection, skeleton={}, template='', load_document=lambda x
         })
         return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
 
+    @blueprint.route('/<_id>-<dash>', methods=['GET', 'POST'])
     @blueprint.route('/<_id>-', methods=['GET', 'POST'])
-    def minimize(_id):
+    def minimize(_id, dash=''):
+        fields = []
+        if 'p' in dash and projection:
+            fields.append(projection)
         try:
-            document = collection.find_one({'_id': ObjectId(_id)})
+            document = collection.find_one({'_id': ObjectId(_id)}, *fields)
             obj2str(document)
             return jsonify(document)
         except Exception as e:
             return str(e)
 
+    @blueprint.route('/-<dash>')
     @blueprint.route('/-')
-    def minimize_all():
-        documents = collection.find()
+    def minimize_all(dash=''):
+        fields = []
+        if 'p' in dash and projection:
+            fields.append(projection)
+        documents = collection.find({}, *fields)
         documents = [obj2str(document) for document in documents]
         return jsonify(documents)
 
