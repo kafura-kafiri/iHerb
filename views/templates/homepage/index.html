@@ -39,44 +39,7 @@
 
 {% include 'homepage/main/index.html' %}
 
-<div class="live-container home-module" style="display: none;">
-   <div class="container-fluid">
-      <div class="row">
-         <div class="col-xs-24">
-            <div class="title-container">
-                    <span class="h4">
-                        <bdi>{{ _('doloka') }} <strong class="text-uppercase title">{{ _('Live') }}</strong></bdi>
-                    </span>
-               <span class="subtitle">
-                        {{ _('Check out what others are buying in real time!') }}
-                    </span>
-               <div class="navigation-container">
-                        <span class="iherb-live-navigation scroll-left disable-navigation disabled-style">
-                                <i class="icon-rewind"></i>
-                        </span>
-                  <span class="iherb-live-navigation scroll-right">
-                            <i class="icon-pause"></i>
-                        </span>
-               </div>
-            </div>
-         </div>
-      </div>
-      <div class="row row-buffer">
-         <div class="col-xs-24">
-            <div class="live-carousel">
-               <div class="row">
-                  <div class="col-xs-24">
-                     <div class="live-wrapper">
-                        <div class="live-scroller"></div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-</div>
-
+{% include 'live/index.html' %}
 
 <div class="latest-blog-articles-container"
      data-icon-url="https://s.images-iherb.com//i/footer/visit-our-blog/blog-icon-us-en.png" style="display: none;">

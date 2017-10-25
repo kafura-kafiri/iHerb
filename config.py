@@ -10,6 +10,7 @@ products = db['PRODUCTS']
 products.drop_indexes()
 products.create_index([("$**", "text")], weights={"$**": 1, "title": 3})
 products.create_index([("title", 1)])
+pr = products
 
 users = db['USERS']
 hows = db['HOWS']
@@ -32,3 +33,7 @@ categories.create_index([("title", 1)])
 reviews = db['REVIEWS']
 
 orders = db['ORDERS']
+
+analytics = db['ANALYTICS']
+
+sessions = db['SESSIONS']

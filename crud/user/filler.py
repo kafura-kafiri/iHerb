@@ -17,7 +17,10 @@ users = [
             'Response rate': 65,
             'Response time': 145,
         },
-        'wish_list': [],
+        'wish_list': {
+            'products': [],
+            'hows': [],
+        },
         'notifications': [],
     },    {
         'phone': '+989104961290',
@@ -31,7 +34,10 @@ users = [
             'Response rate': 65,
             'Response time': 145,  # 145 min -> within a few hours
         },
-        'wish_list': [],
+        'wish_list': {
+            'products': [],
+            'hows': [],
+        },
         'notifications': [],
     },     {
         'phone': '+989104961290',
@@ -45,7 +51,10 @@ users = [
             'Response rate': 65,
             'Response time': 145,  # 145 min -> within a few hours
         },
-        'wish_list': [],
+        'wish_list': {
+            'products': [],
+            'hows': [],
+        },
         'notifications': [],
     },     {
         'phone': '+989104961290',
@@ -59,7 +68,10 @@ users = [
             'Response rate': 65,
             'Response time': 145,  # 145 min -> within a few hours
         },
-        'wish_list': [],
+        'wish_list': {
+            'products': [],
+            'hows': [],
+        },
         'notifications': ['ba delam mikoni bazi', 'bepa nabazi', 'bia ta barat bekhunam'],
     },
 ]

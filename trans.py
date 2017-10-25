@@ -188,7 +188,35 @@ dictionary = {
 
     'Star': 'ستاره',
     'Yes': 'آره',
-    'No': 'نه'
+    'No': 'نه',
+
+    '''sorry this product is no longer in stock''': 'متاسفیم این محصول قابل حصول نیست',
+    '''daily value dv not establishedbr †this product uses gnosis
+                                     spas l5methyltetrahydrofolic acid glucosamine saltbr ††this product
+                                     uses albionrsquos traacs calcium bisglycinate chelate chromium nicotinate
+                                     glycinate chelate copper bisglycinate chelate manganese bisglycinate chelate
+                                     magnesium bisglycinate chelate molybdenum glycinate chelate and zinc
+                                     bisglycinate chelate traacs is a registered trademark of albion international
+                                     inc br †††this product uses albionrsquos bororganic boron glycinate
+                                     complex bororganic is a trademark of albion international incbr''': 'دارام دارارام',
+    'iherb customer reviews': 'نظرات مشتری آیهرب',
+    '5': '۵',
+    '4': '۴',
+    '3': '۳',
+    '2': '۲',
+    '1': '۱',
+    'see all reviews': 'مشاهده تمام نظرات',
+    'top positive review': 'نظر برتر',
+    'posted by': 'ارسال شده توسط',
+    'on': 'در',
+    'people found this helpful': 'مردم آنرا مفید دانستند',
+    'verified purchase': '',
+    'was this review helpful to you': 'آیا این نظر مفید بود',
+    'report abuse': 'گزارش ناپسند',
+    'thanks for your feedback': 'تشکر برای پسجوابتان',
+    'copy and share this product review': 'کپی و اشتراک این نظر',
+    'share this review with others and save even more': 'این نظر را با دیگران درمیان بگذارید و پول صرفه جویی کنید',
+
 }
 
 
@@ -232,7 +260,7 @@ def trans(phrase):
         phrase = simplify(phrase)
         if phrase in dictionary:
             return dictionary[phrase]
-        print((CSI % '5;30;41' + "'{}': '',".format(phrase) + CSI % '0').encode('utf-8'))
+        print((CSI % '5;30;41' + "'{}': '',".format(phrase) + CSI % '0'))
         return phrase
     import numbers
     if isinstance(phrase, numbers.Real):

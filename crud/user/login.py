@@ -50,7 +50,7 @@ def setup(app):
                 ctx['prev_url'] = _redirect_url
                 _redirect_url = "<input type='hidden' name='prev_url' id='prev_url' value='{}'></input>".format(_redirect_url)
 
-            return render_template('user/index.html', **ctx)
+            return render_template('user/login.html', **ctx)
 
             '''
                    <form action='login' method='POST'>

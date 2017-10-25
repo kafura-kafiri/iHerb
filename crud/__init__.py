@@ -3,9 +3,10 @@ from flask import jsonify, render_template, abort, request
 from flask_login import login_required, current_user
 import json
 from utility import request_json, obj2str, free_from_, str2obj
+from crud._services.analytics import analyze
 
 
-def crud(blueprint, collection, skeleton={}, template='', load_document=lambda x: (x, {})):
+def crud(blueprint, collection, skeleton={}, template='', load_document=lambda x: (x, {}), redundancies={}):
     @blueprint.route('/+', methods=['GET', 'POST'])
     @blueprint.route('/<_id>+', methods=['GET', 'POST'])
     #@login_required
@@ -19,6 +20,8 @@ def crud(blueprint, collection, skeleton={}, template='', load_document=lambda x
             document['_id'] = ObjectId(_id)
         if current_user.is_authenticated:
             document['_author'] = current_user._id
+        if 'insert' in redundancies:
+            redundancies['insert'](document)
         result = collection.insert_one(document)
         return obj2str(result.inserted_id)
 
@@ -31,6 +34,9 @@ def crud(blueprint, collection, skeleton={}, template='', load_document=lambda x
     @blueprint.route('/<_id>*', methods=['GET', 'POST'])
     #@login_required
     def delete(_id):
+        if 'delete' in redundancies:
+            document = collection.find_one({'_id': ObjectId(_id)})
+            redundancies['delete'](document)
         collection.delete_one({
             '_id': ObjectId(_id)
         })
@@ -52,16 +58,18 @@ def crud(blueprint, collection, skeleton={}, template='', load_document=lambda x
         return jsonify(documents)
 
     @blueprint.route('/<_id>')
+    @analyze
     def get(_id):
         try:
             document = collection.find_one({'_id': ObjectId(_id)})
             document, ctx = load_document(document)
         except Exception as e:
-            return str(e)
+            return str(e), 403
         return render_template(template + '.html', **document, **ctx)
 
     @blueprint.route('/<_id>$$', methods=['GET', 'POST'])  # when in post post > get beca of $$.html
     #@login_required
+    @analyze
     def universal_alter(_id):
         _id = ObjectId(_id)
         try:
@@ -74,6 +82,8 @@ def crud(blueprint, collection, skeleton={}, template='', load_document=lambda x
                 {'$set': _json},
                 return_document=ReturnDocument.AFTER
             )
+            if 'update' in redundancies:
+                redundancies['update'](document)
             document = obj2str(document)
             return render_template('crud/$$.html', **document)
         except Exception as e:
@@ -117,6 +127,8 @@ def crud(blueprint, collection, skeleton={}, template='', load_document=lambda x
                     return_document=ReturnDocument.AFTER
                 )
             #  document['_id'] = str(document['_id'])
+            if 'update' in redundancies:
+                redundancies['update'](document)
             obj2str(document)
             return render_template(template + '_plus.html', **document)
         except Exception as e:
