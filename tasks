@@ -1,14 +1,9 @@
 --wsgi-disable-file-wrapper
 print() ascii << ./trans.py
 
-
-
-profile + wish_list
-
+wishlist
 
 test live, test review alter
-two crud for user or one or hybrid? we have two page for user two for user alter so what ?
-
 
 realise<<
 show<<

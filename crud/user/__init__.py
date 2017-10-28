@@ -1,9 +1,27 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
 from config import users
 from crud import crud
-from utility import obj2str
+from utility import obj2str, request_json
 from flask_login import login_required, current_user
 
+messages = {
+    'saved',
+    'required',
+    'segment',
+    'invalid',
+    'already',
+    'character',
+    '2num',
+    'bad',
+
+    'updated',
+    'removed',
+    'not_saved',
+    'not_removed',
+    'saved',
+
+
+}
 
 def load_user(user):
     from config import products, hows
@@ -16,8 +34,11 @@ def load_user(user):
     context = {
         'products': [obj2str(_home) for _home in _pr],
         'hows': [obj2str(_home) for _home in _hows],
+        'messages': messages
     }
-    return user, context
+    return {
+               'user': user
+           }, context
 
 
 blue = Blueprint('users', __name__,template_folder='templates')
@@ -26,8 +47,27 @@ crud(blue, users, template='user/index', load_document=load_user)
 
 @blue.route('/me')
 @login_required
-def profile():
+def get_profile():
     return render_template('user/profile.html')
+
+
+@blue.route('/me$', methods=['GET', 'POST'])
+@login_required
+def update_profile():
+    from pymongo import ReturnDocument
+    try:
+        node = request.values['node']
+        _json = request_json(request, specific_type=None)
+        user = users.find_one_and_update(
+            {'_id': current_user._id},
+            {"$set": {node: _json}},
+            return_document=ReturnDocument.AFTER
+        )
+        id = user.id
+        current_user.__dict__ = user
+        current_user.id = id
+    except: pass
+    return render_template('user/profile_plus.html')
 
 
 @blue.route('/me/wishlist')

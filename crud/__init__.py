@@ -6,7 +6,20 @@ from utility import request_json, obj2str, free_from_, str2obj
 from crud._services.analytics import analyze
 
 
+
 def crud(blueprint, collection, skeleton={}, projection=None, template='', load_document=lambda x: (x, {}), redundancies={}):
+    """
+    :issues modify each method with my custom method
+
+    :param blueprint:
+    :param collection:
+    :param skeleton:
+    :param projection:
+    :param template:
+    :param load_document:
+    :param redundancies:
+    :return:
+    """
     @blueprint.route('/+', methods=['GET', 'POST'])
     @blueprint.route('/<_id>+', methods=['GET', 'POST'])
     #@login_required
@@ -75,37 +88,6 @@ def crud(blueprint, collection, skeleton={}, projection=None, template='', load_
             return str(e), 403
         return render_template(template + '.html', **document, **ctx)
 
-    @blueprint.route('/<_id>$$', methods=['GET', 'POST'])  # when in post post > get beca of $$.html
-    #@login_required
-    @analyze
-    def universal_alter(_id):
-        _id = ObjectId(_id)
-        try:
-            from pymongo import ReturnDocument
-            _json = request_json(request)
-            _json = free_from_(_json)
-            _json = str2obj(_json)
-            document = collection.find_one_and_update(
-                {'_id': _id},
-                {'$set': _json},
-                return_document=ReturnDocument.AFTER
-            )
-            if 'update' in redundancies:
-                redundancies['update'](document)
-            document = obj2str(document)
-            return render_template('crud/$$.html', **document)
-        except Exception as e:
-            print("sorry I can't update let's bring some thing to show")
-            try:
-                document = collection.find_one({'_id': _id})
-                if not document:
-                    raise
-                document = obj2str(document)
-            except Exception as e:
-                print("sorry I can't show any thing sorry for you")
-                abort(404)
-            return render_template('crud/$$.html', ctx=document)
-
     @blueprint.route('/<_id>$', methods=['GET', 'POST'])
     #@login_required
     def alter(_id):
@@ -137,18 +119,46 @@ def crud(blueprint, collection, skeleton={}, projection=None, template='', load_
             #  document['_id'] = str(document['_id'])
             if 'update' in redundancies:
                 redundancies['update'](document)
-            obj2str(document)
-            return render_template(template + '_plus.html', **document)
         except Exception as e:
             print(e)
             try:
                 document = collection.find_one({'_id': _id})
-                #  document['_id'] = str(document['_id'])
-                obj2str(document)
-                return render_template(template + '_plus.html', **document)
             except Exception as e:
                 print(e)
                 abort(405)
+        document, ctx = load_document(document)
+        return render_template(template + '_plus.html', **document, **ctx)
+
+    @blueprint.route('/<_id>$$', methods=['GET', 'POST'])  # when in post post > get beca of $$.html
+    #@login_required
+    @analyze
+    def universal_alter(_id):
+        _id = ObjectId(_id)
+        try:
+            from pymongo import ReturnDocument
+            _json = request_json(request)
+            _json = free_from_(_json)
+            _json = str2obj(_json)
+            document = collection.find_one_and_update(
+                {'_id': _id},
+                {'$set': _json},
+                return_document=ReturnDocument.AFTER
+            )
+            if 'update' in redundancies:
+                redundancies['update'](document)
+            document = obj2str(document)
+            return render_template('crud/$$.html', **document)
+        except Exception as e:
+            print("sorry I can't update let's bring some thing to show")
+            try:
+                document = collection.find_one({'_id': _id})
+                if not document:
+                    raise
+                document = obj2str(document)
+            except Exception as e:
+                print("sorry I can't show any thing sorry for you")
+                abort(404)
+            return render_template('crud/$$.html', ctx=document)
 
     '''@blueprint.route('/')
     def filtrate():

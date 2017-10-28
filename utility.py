@@ -3,6 +3,7 @@ from bson import ObjectId
 
 
 def request_json(request, _json=None, specific_type=dict):
+    raw = None
     try:
         if _json:
             raw = _json
@@ -16,7 +17,7 @@ def request_json(request, _json=None, specific_type=dict):
         else:
             raise Exception
     except Exception as e:
-        raise e
+        return raw
 
 
 def request_attributes(request, **kwargs):

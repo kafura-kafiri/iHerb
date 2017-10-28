@@ -2,7 +2,6 @@
 {% block container %}
 <input type="hidden" class="message-center-customerid" data-customerid="c6fad208-9585-4720-806a-84fcf8232a4b"/>
 <div class="col-xs-24 col-md-20 myaccount-container" id="MessageCenter">
-
    <section class="row row-buffer-lg">
       <div class="col-xs-2 hidden-md hidden-lg hidden-xl myaccount-hamburger-menu">
          <i class="icon-hamburgermenufat h-menu open-overlay"></i>
@@ -10,8 +9,8 @@
       <div class="col-xs-11 col-md-19 breadcrumbs">
          <div class="row">
             <div class="col-xs-24">
-               <h1>Messages</h1>
-               <p><a href="/myaccount/profile">My Account </a> <span> Messages</span></p>
+               <h1>{{ _('Messages') }}</h1>
+               <p><a href="/myaccount/profile">{{ _('My Account') }} </a> <span> {{ _('Messages') }}</span></p>
             </div>
          </div>
       </div>
@@ -20,17 +19,16 @@
                  data-ga-event-category="Message Center"
                  data-ga-event-action="Message Center"
                  data-ga-event-value="Message Center">
-            <option value="0" data-ga-event-label="Change - Filter All Messages">All Messages</option>
-            <option value="1" data-ga-event-label="Change - Filter Unread">Unread</option>
-            <option value="2" data-ga-event-label="Change - Filter Last 30 Days">Last 30 Days</option>
-            <option value="3" data-ga-event-label="Change - Filter Last 6 Months">Last 6 Months</option>
-            <option value="4" data-ga-event-label="Change - Filter This Year">This Year</option>
-            <option value="5" data-ga-event-label="Change - Filter Last Year">Last Year</option>
-            <option value="6" data-ga-event-label="Change - Filter Older">Older</option>
+            <option value="0" data-ga-event-label="Change - Filter All Messages">{{ _('All Messages') }}</option>
+            <option value="1" data-ga-event-label="Change - Filter Unread">{{ _('Unread') }}</option>
+            <option value="2" data-ga-event-label="Change - Filter Last 30 Days">{{ _('Last 30 Days') }}</option>
+            <option value="3" data-ga-event-label="Change - Filter Last 6 Months">{{ _('Last 6 Months') }}</option>
+            <option value="4" data-ga-event-label="Change - Filter This Year">{{ _('This Year') }}</option>
+            <option value="5" data-ga-event-label="Change - Filter Last Year">{{ _('Last Year') }}</option>
+            <option value="6" data-ga-event-label="Change - Filter Older">{{ _('Older') }}</option>
          </select>
       </div>
    </section>
-
    <section class="row">
       <div id="MessageCenterContainer" class="col-xs-24">
          <div class="row">
@@ -42,7 +40,7 @@
                         data-ga-event-category="Message Center"
                         data-ga-event-action="Message Center"
                         data-ga-event-label="Click - Important"
-                        data-ga-event-value="">Important <span
+                        data-ga-event-value="">{{ _('Important') }} <span
                            class="count Important ma-icons badge badge-danger badge-small hide"></span></a>
                   </li>
                   <li class="col-xs-6">
@@ -51,7 +49,7 @@
                         data-ga-event-category="Message Center"
                         data-ga-event-action="Message Center"
                         data-ga-event-label="Click - Your Orders"
-                        data-ga-event-value="">Your Orders <span
+                        data-ga-event-value="">{{ _('Your Orders') }} <span
                            class="count Order ma-icons badge badge-danger badge-small hide"></span></a>
                   </li>
                   <li class="col-xs-6">
@@ -60,7 +58,7 @@
                         data-ga-event-category="Message Center"
                         data-ga-event-action="Message Center"
                         data-ga-event-label="Click - Your Account"
-                        data-ga-event-value="">Your Account <span
+                        data-ga-event-value="">{{ _('Your Account') }} <span
                            class="count Account ma-icons badge badge-danger badge-small hide"></span></a>
                   </li>
                </ul>
@@ -85,7 +83,6 @@
                   <i class="icon-recentlyviewedarrowright"></i>
                </a>
             </div>
-
             <div class="col-xs-24 tab-content col-buffer-sm">
                <div id="important" class="tab-pane in active">
                   <div class="row">
@@ -95,20 +92,19 @@
                            <table class="table table-hover message-table">
                               <thead>
                               <tr>
-                                 <th>Subject</th>
-                                 <th>Date | Time</th>
+                                 <th>{{ _('Subject') }}</th>
+                                 <th>{{ _('Date') }} | {{ _('Time') }}</th>
                               </tr>
                               </thead>
                               <tbody></tbody>
                            </table>
-
                            <div class="detail-view hide">
                               <div class="detail-view-header row-buffer-md">
                                  <i class="icon-recentlyviewedarrowleft"></i>
                                  <span class="btn btn-link underline back-to-list">
-                                                Back to
-                                                <span class="message-type hide" data-message-type="1">Important</span>
-                                                <span class="message-type hide" data-message-type="2">Your Orders</span>
+                                                {{ _('Back to') }}
+                                                <span class="message-type hide" data-message-type="1">{{ _('Important') }}</span>
+                                                <span class="message-type hide" data-message-type="2">{{ _('Your Orders') }}</span>
                                                 <span class="message-type hide"
                                                       data-message-type="3">Your Account</span>
                                             </span>
@@ -118,7 +114,7 @@
 
                            <div class="empty-state hide">
                               <i class="icon-writetous"></i>
-                              <p><b>No Messages to Display</b></p>
+                              <p><b>{{ _('No Messages to Display') }}</b></p>
                            </div>
 
                         </div>

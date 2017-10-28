@@ -22,6 +22,12 @@ users = [
             'hows': [],
         },
         'notifications': [],
+        'page': {
+            'title': '',
+            'rank': 0,
+            'img': '',
+            'description': ''
+        },
     },    {
         'phone': '+989104961290',
         'first_name': 'pouria',
@@ -39,6 +45,12 @@ users = [
             'hows': [],
         },
         'notifications': [],
+        'page': {
+            'title': '',
+            'rank': 0,
+            'img': '',
+            'description': ''
+        },
     },     {
         'phone': '+989104961290',
         'first_name': 'ali',
@@ -56,6 +68,12 @@ users = [
             'hows': [],
         },
         'notifications': [],
+        'page': {
+            'title': '',
+            'rank': 0,
+            'img': '',
+            'description': ''
+        },
     },     {
         'phone': '+989104961290',
         'first_name': 'admin',
@@ -73,6 +91,12 @@ users = [
             'hows': [],
         },
         'notifications': ['ba delam mikoni bazi', 'bepa nabazi', 'bia ta barat bekhunam'],
+        'page': {
+            'title': '',
+            'rank': 0,
+            'img': '',
+            'description': ''
+        },
     },
 ]
 

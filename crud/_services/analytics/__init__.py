@@ -25,22 +25,18 @@ def analyze(func):
             return response
     return inner
 
-analytic_order = 0
-
 
 def _analyze(collection, document, action):
-    global analytic_order
     _document = {
         'collection': collection,
         'document': ObjectId(document),
         'action': action,
         'date': datetime.now(),
-        'order': analytic_order
+        'order': analytics.count()
     }
     if current_user.is_authenticated:
         _document['user'] = current_user._id
     analytics.insert_one(_document)
-    analytic_order += 1
 
 
 def crud():
@@ -55,7 +51,7 @@ def crud():
     @blue.route('/live/<int:limit>/<int:skip>', methods=['GET', 'POST'])
     def live(limit=5, skip=None):
         if not skip:
-            skip = analytic_order - jump_back
+            skip = analytics.count() - jump_back
             skip = 5
         documents = analytics.find({'order': {"$gte": skip, "$lt": skip + limit}})
         documents = [obj2str(document) for document in documents]
