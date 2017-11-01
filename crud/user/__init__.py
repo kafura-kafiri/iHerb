@@ -73,6 +73,13 @@ def update_profile():
 @blue.route('/me/wishlist')
 @login_required
 def wish_list():
+    from config import products
+    from bson import ObjectId
+    from flask import jsonify
+    _products = current_user.wish_list['products']
+    if type(_products) is dict:
+        _products = [ObjectId(str(_product)) for _product in _products]
+        current_user.wish_list['products'] = products.find({'_id': {'$in': _products}})
     return render_template('user/wishlist.html')
 
 

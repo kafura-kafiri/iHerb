@@ -216,7 +216,6 @@ dictionary = {
     'thanks for your feedback': 'تشکر برای پسجوابتان',
     'copy and share this product review': 'کپی و اشتراک این نظر',
     'share this review with others and save even more': 'این نظر را با دیگران درمیان بگذارید و پول صرفه جویی کنید',
-
     'orders': 'سفارشات',
     'give us some feedback': 'به ما بازخورد دهید',
     'available': 'دردسترس',
@@ -291,7 +290,95 @@ dictionary = {
     'edit': 'ویرایش',
     'password': 'رمزعبور',
     'update': 'به روزرسانی',
-    'cancel': 'انصراف'
+    'cancel': 'انصراف',
+
+    'here you can create your own personalized iherb page share all your reviews social media handles and favorite products': 'در اینجا شما می توانید iHerb صفحه شخصی خود را ایجاد کنید! ',
+    'url saved successfully': 'نشانی اینترنتی با موفقیت ذخیره شد',
+    'url is required': 'URL مورد نیاز است',
+    'url must be between 6 and 25 characters': 'آدرس باید بین 6 تا 25 کاراکتر باشد.',
+    'your url contains some invalid words or characters': 'آدرس شما حاوی کلمه (های) نامعتبر یا شخصیت (های) نامعتبر است.',
+    'someone already has the url': 'کسی قبلا نشانی اینترنتی دارد',
+    'only az 09 and  characters are allowed': 'تنها A-Z، 0-9 و - کاراکتر مجاز هستند.',
+    'your url may only contain two numbers in a row': 'URL شما فقط ممکن است شامل دو عدد در یک ردیف باشد.',
+    'your iherb page may contain abusive or offensive wording please check new url': 'صفحه iHerb شما ممکن است حاوی تبعیض یا توهین آمیز باشد. ',
+    'create your own unique web address and user name': 'آدرس وب منحصر به فرد و نام کاربری خود را ایجاد کنید',
+    '''names should be 6 letters digits or longer with no space between them
+                                        please note that if you decide to change from the name you have chosen to a
+                                        different one updating it could take us up to 24 hrs''': 'نام ها باید 6 حرف یا رقمی یا طولانی تر باشد، بدون فاصله بین آنها.',
+    'update web url': 'به روز رسانی URL وب',
+    'view web page': 'مشاهده وب سایت',
+    'note': 'توجه داشته باشید:',
+    'your web address must be between 6 and 25 characters': 'آدرس وب شما باید بین 6 تا 25 کاراکتر باشد.',
+    'user name saved successfully': 'نام کاربری با موفقیت ذخیره شد',
+    'user name is required': 'نام کاربری لازم است.',
+    'user name cannot be longer than 25 characters': 'نام کاربری نمی تواند بیش از 25 کاراکتر باشد.',
+    'user name contains some invalid words': 'نام کاربری حاوی کلمات نامعتبر است.',
+    'only az 09 and  characters are allowed': 'تنها A-Z، 0-9 و - کاراکتر مجاز هستند.',
+    'your iherb page may contain abusive or offensive wording please check user name': 'صفحه iHerb شما ممکن است حاوی تبعیض یا توهین آمیز باشد. ',
+    'user name may contain rewards code or coupon sharing information please check it and try again': 'نام کاربری ممکن است کد پاداش یا اطلاعات به اشتراک گذاری کوپن را داشته باشد. ',
+    'update user name': 'بهروزرسانی نام کاربری',
+    'note': 'توجه داشته باشید:',
+    'this name will be displayed on your iherb page and in product reviews user names may not contain three characters followed by three or more numbers': 'این نام در صفحه iHerb و در بررسی محصولات نمایش داده خواهد شد. ',
+    'user name': 'نام کاربری :',
+    'do not show': 'نشان نده',
+    'page header': 'سربرگ صفحه',
+    'title': 'عنوان',
+    'page title should not exceed 50 characters please do not include a rewards or promo code': 'عنوان صفحه نباید بیش از 50 کاراکتر باشد. ',
+    'my rank': 'رتبه من:',
+    'do not show': 'نشان نده',
+    'page customization': 'سفارشی سازی صفحه',
+    'your profile photo has been removed': 'عکس نمایه شما حذف شده است',
+    'something happened and we could not remove your photo please try again in a few minutes if the problem persists please contact customer service thank you': 'چیزی اتفاق افتاده است و ما نمیتوانیم عکس شما را حذف کنیم. ',
+    'no photo uploaded': 'عکس آپلود نشده است.',
+    'remember to click quotsave page customizationsquot to finish uploading your new profile photo': 'به یاد داشته باشید که کلیک کنید',
+    'you may upload photos in jpg gif or png format': 'شما می توانید عکس ها را در قالب jpg، gif یا png آپلود کنید',
+    'profile photo changes may take up to a few minutes to see changes': 'تغییرات عکس پروفایل ممکن است چند دقیقه طول بکشد تا تغییرات مشاهده شود.',
+    'page description': 'توضیحات صفحه',
+    'note': 'توجه داشته باشید:',
+    'use this field to tell us about yourself please limit your remarks to yourself natural products and healthy living please no phone numbers or urls do not exceed 1000 characters': 'از این فیلد برای ما در مورد خودتان استفاده کنید ',
+    'social media accounts': 'حساب های رسانه های اجتماعی',
+    'include links to your social media accounts': 'شامل پیوندهایی به حسابهای رسانه اجتماعی شما',
+    'link options': 'گزینه های پیوند',
+    'view page': 'مشاهده صفحه',
+    'save page customizations': 'ذخیره صفحه سفارشی',
+    'my favorite products': 'محصولات مورد علاقه من',
+    'add up to 8 of your favorite products to display on your my iherb page profile enter product code or url': 'اضافه کردن تا 8 مورد از محصولات مورد علاقه خود را برای نمایش بر روی صفحه نمایش My iHerb صفحه. ',
+    'your favorite product ranks have been updated': 'صفات مورد علاقه خود را به روز شده است.',
+    'product has been removed': 'محصول حذف شده است',
+    'we could not save your new favorite product ranks please try again later ltbr gt if the problem persists please contact customer service': 'ما نمیتوانیم صفات جدید مورد علاقه خود را ذخیره کنیم. ',
+    'we could not remove product please try again later ltbr gt if the problem persists please contact customer service': 'ما نمی توانیم محصول را حذف کنیم. ',
+    'product has been successfully added to your favorite products': 'محصول با موفقیت به محصولات مورد علاقه شما اضافه شده است.',
+    'shop with my rewards code': 'فروشگاه با کد پاداش من:',
+    'active since': 'فعال از:',
+
+    'daily value dv not establishedbr †this product uses gnosis spas l5methyltetrahydrofolic acid glucosamine saltbr ††this product uses albionrsquos traacs calcium bisglycinate chelate chromium nicotinate glycinate chelate copper bisglycinate chelate manganese bisglycinate chelate magnesium bisglycinate chelate molybdenum glycinate chelate and zinc bisglycinate chelate traacs is a registered trademark of albion international inc br †††this product uses albionrsquos bororganic boron glycinate complex bororganic is a trademark of albion international incbr': '* ارزش روزانه (DV) ثابت نشده است. <br/> این محصول با استفاده از اسید L-5-Methyltetrahydrofolic اسید Gnosis S.p.A.، نمک گلوکوزامین <br/> â € â € این محصول با استفاده از Albion',
+    'expiration date': 'تاریخ انقضا',
+    '''pthe length of time for the expiration date or quotbest used beforequot date depends on
+                                  the type of product as well as the brandp
+                               pperishable items such as flax oils or certain probiotics generally have shorter
+                                  expiration dates although our warehouse is fully airconditioned these more fragile
+                                  items are put in cold storage freezer or refrigeration unit for maximum freshnessp
+                               pour receiving department does its best to verify and then enter the correct expiration
+                                  dates for all incoming products however discrepancies do occur from time to time this
+                                  being said the exceptionally high turnover at iherb ensures that our inventory is among
+                                  the freshest in the industryp''': '<p> طول زمان برای تاریخ انقضا یا',
+    'shipping weight': 'وزن حمل و نقل',
+    '''the shipping weight includes the product protective packaging
+                               material and the actual shipping box in addition the shipping weight may be adjusted for
+                               the dimensional weight eg length width ampamp height of a package it is important to
+                               note that certain types of products eg glass containers liquids fragile refrigerated or
+                               ice packed will often require protective packaging material as such these products will
+                               reflect a higher shipping weight compared to the unprotected product''': 'وزن حمل و نقل شامل محصول، بسته بندی محافظتی است',
+    'product code': 'کد محصول',
+    'upc code': 'کد UPC',
+    'package quantity': 'تعداد بسته بندی',
+    'dimensions': 'ابعاد',
+    'in': 'اینچ',
+    'lbs': 'پوند',
+
+    'items': 'موارد',
+    'price': 'قیمت',
+    'special': 'ویژه',
 }
 
 
@@ -322,6 +409,18 @@ def digify(num):
         _num.append(digits[digit])
     return ''.join(_num)
 
+
+def translate(phrase, source='en', target='fa'):
+    import requests
+    import json
+    _url = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl={source}&tl={target}&dt=t&q={phrase}'\
+        .format(source=source, target=target, phrase=phrase)
+    r = requests.get(_url)
+    r = r.content.decode('utf-8')
+    r = json.loads(r)[0][0][0]
+    return r
+
+
 def trans(phrase):
     CSI = "\x1B[%sm"
     W = '\033[0m'  # white (normal)
@@ -331,11 +430,12 @@ def trans(phrase):
     B = '\033[34m'  # blue
     P = '\033[35m'  # purple
     if isinstance(phrase, str):
+        phrase = phrase.rstrip()
         _phrase = phrase
         phrase = simplify(phrase)
         if phrase in dictionary:
             return dictionary[phrase]
-        print((CSI % '5;30;41' + "'{}': '',".format(phrase) + CSI % '0'))
+        print((CSI % '5;30;41' + "'{}': '{}',".format(phrase, translate(_phrase)) + CSI % '0'))
         return phrase
     import numbers
     if isinstance(phrase, numbers.Real):

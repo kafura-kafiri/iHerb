@@ -45,8 +45,9 @@ def setup(app):
                 _redirect = request.values['redirect']
                 ctx['redirect'] = _redirect
                 _redirect = "<input type='hidden' name='redirect' id='redirect' value='{}'></input>".format(_redirect)
-            elif 'prev_url' in request.values:
-                _redirect_url = request.values['prev_url']
+            elif 'prev_url' in request.values or 'next' in request.values:
+                try: _redirect_url = request.values['prev_url']
+                except: _redirect_url = request.values['next']
                 ctx['prev_url'] = _redirect_url
                 _redirect_url = "<input type='hidden' name='prev_url' id='prev_url' value='{}'></input>".format(_redirect_url)
 
@@ -60,17 +61,16 @@ def setup(app):
                     {redirect}{redirect_url}
                    </form>
                    '''.format(redirect=_redirect, redirect_url=_redirect_url)
-        print(request.form)
         username = request.form['username']
         json = users.find_one({'username': username})
         if _hash(request.form['password']) == json['password']:
             user = User(json)
             login_user(user)
-            print(request.form)
             if 'redirect' in request.form:
                 _redirect =request.form['redirect']
                 return redirect(url_for(_redirect))
             elif 'prev_url' in request.form:
+                print('hulu')
                 return redirect(request.form['prev_url'])
             else:
                 return redirect(url_for('protected'))
@@ -90,8 +90,9 @@ def setup(app):
             if 'redirect' in request.values:
                 _redirect = request.values['redirect']
                 _redirect = "<input type='hidden' name='redirect' id='redirect' value='{}'></input>".format(_redirect)
-            elif 'prev_url' in request.values:
-                _redirect_url = request.values['prev_url']
+            elif 'prev_url' in request.values or 'next' in request.values:
+                try: _redirect_url = request.values['prev_url']
+                except: _redirect_url = request.values['next']
                 _redirect_url = "<input type='hidden' name='prev_url' id='prev_url' value='{}'></input>".format(
                     _redirect_url)
             return '''

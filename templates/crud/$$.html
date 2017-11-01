@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
    <meta charset="UTF-8">
-   <title>{{ title }}</title>
+   <title>{{ ctx.title }}</title>
+   <link rel="icon" href="{{ url_for('static', filename='img/$$.jpeg') }}">
    <link rel="stylesheet" href="{{ url_for('static', filename='semantic/dist/semantic.min.css') }}">
    <script src="{{ url_for('static', filename='jquery/jquery-3.2.1.min.js') }}"></script>
    <script src="{{ url_for('static', filename='semantic/dist/semantic.min.js') }}"></script>
@@ -49,14 +50,16 @@
       {{elseif Object.prototype.toString.call( this ) === '[object Object]' }}
          <div class="ui styled fluid accordion">
             {{#each this: attr }}
-               <div class="title">
-                  <i class="dropdown icon"></i>
-                  {{ attr }}
-                  <i on-click="['delete', @keypath]" class="orange close link icon"></i>
-               </div>
-               <div class="content">
-                  {{> thumbnail this }}
-               </div>
+               {{#if !attr.match(/__.*__/) }}
+                  <div class="title">
+                     <i class="dropdown icon"></i>
+                     {{ attr }}
+                     <i on-click="['delete', @keypath]" class="orange close link icon"></i>
+                  </div>
+                  <div class="content">
+                     {{> thumbnail this }}
+                  </div>
+               {{/if}}
             {{/each}}
             <div class="ui bottom attached warning message">
                <div class="ui input">
@@ -71,7 +74,6 @@
                <div class="ui input">
                   <input type="text" value="{{ this.__attr__ }}" placeholder="new unique name" size="55"> <!-- dir="rtl" style=" text-align: right; float: right; clear: both; direction: RTL" -->
                </div>
-
             </div>
          </div>
       {{/if}}
@@ -91,7 +93,6 @@
       var plusUltra = new Ractive({
          template: '#template',
          target: 'body',
-
          data: {{ ctx | tojson }},
       });
 

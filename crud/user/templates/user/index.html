@@ -9,11 +9,9 @@
 <head>
    <link rel="dns-prefetch" href="https://s.images-iherb.com/">
    <script>
-
         var iHerb_Protocol = location.protocol;
         var iHerb_BaseUrl = location.host;
         var iHerb_ActionHost = "//checkout.iherb.com";
-
    </script>
    <!-- CATWEB2FFV -->
    <!-- BuildNumber: 1.1.93250 -->
@@ -87,8 +85,6 @@
 
 <div id="transBG" class="transparency hide"></div>
 <div id="toaster"></div>
-
-
 <script>
     var IHERB_CATALOG_HOST = "//www.iherb.com";
     var IHERB_MYACCOUNT_HOST = "//secure.iherb.com";
@@ -130,7 +126,7 @@
       <div class="col-xs-offset-7 col-xs-15">
          <div class="me-page-title">
             <strong>
-
+               {{ user.page.title }}
             </strong>
          </div>
          <div class="me-rewards-code">
@@ -177,7 +173,7 @@
                         <i class="icon-username-iherb-page"></i>
                      </span>
                      <span>
-                        <strong>{{ first_name + ' ' + last_name if first_name and last_name else _('iHerb Customer') }}</strong>
+                        <strong>{{ user.first_name + ' ' + user.last_name if user.first_name and user.last_name else _('iHerb Customer') }}</strong>
                      </span>
                   </div>
                   <div class="me-profile-rank">
@@ -185,7 +181,7 @@
                         <i class="icon-rank-iherb-page"></i>
                      </span>
                      <span>
-                        <strong>---</strong>
+                        <strong>{{ _(user.page.rank) }}</strong>
                      </span>
                   </div>
                </div>
@@ -210,6 +206,7 @@
    </div>
 </div>
 <div class="container">
+   {{ user.page.description }}
 </div>
 
 {% include 'live/index.html' %}

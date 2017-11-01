@@ -181,5 +181,5 @@ pr = {
         'https://www.images-iherb.com/y/THR-00287-6.jpg',
         'https://www.images-iherb.com/y/THR-00287-5.jpg',
     ],
-    'categories': ['health', 'warm up'],
+    'categories': [],
 }

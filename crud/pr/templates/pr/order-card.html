@@ -104,8 +104,9 @@
                </div>
                <div class="row">
                   <div class="col-xs-24">
-                     <div id="out-of-stock-message-added" class="out-of-stock-message info-popup"><p>{{ _('''Sorry,
-                        this product is no longer in stock.''') }}</p></div>
+                     <div id="out-of-stock-message-added" class="out-of-stock-message info-popup">
+                        <p>{{ _('Sorry, this product is no longer in stock.') }}</p>
+                     </div>
                      <button type="submit" class="btn btn-primary btn-block btn-lg btn-add-to-cart"
                              name="AddToCart" data-product-id="52954">
                         <strong>{{ _('Add to Cart') }}</strong>
@@ -154,6 +155,22 @@
                              class="btn btn-default btn-block btn-lg btn-add-wishlist"
                              data-in-wishlist="false">{{ _('Add to Wish List') }}
                      </button>
+                     {% if current_user.is_authenticated %}
+                     <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                           $('button[name="AddToWishlist"]').click(function() {
+                              data = {json: '1', node: 'wish_list.products.{{ pr._id }}', ajax: ''};
+                              $.ajax({
+                                 url: '/users/{{ current_user._id }}$',
+                                 type: 'POST',
+                                 data: data,
+                              }).done(function(response) {
+                                 alert(response);
+                              });
+                           });
+                        });
+                     </script>
+                     {% endif %}
                      <i class="icon-uparrow wishlist-arrow"></i>
                      <input class="wishlist-model" type="hidden" name="pid" value="52954"
                             data-account="//secure.iherb.com"

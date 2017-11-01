@@ -160,12 +160,12 @@
                         <div class="iherb-header-menu iherb-header-menu-account my-account-menu">
                            <ul class="my-account-links">
                               <li>
-                                 <a href="https://checkout.iherb.com/checkout/profile">
+                                 <a href="/users/me">
                                     {{ _('My Account') }}
                                  </a>
                               </li>
                               <li>
-                                 <a href="https://secure.iherb.com/myaccount/wishlist/">
+                                 <a href="/users/me/wishlist">
                                     {{ _('Wish List') }}
                                  </a>
                               </li>
@@ -175,7 +175,7 @@
                                  </a>
                               </li>
                               <li>
-                                 <a href="https://secure.iherb.com/myaccount/publicprofile/">
+                                 <a href="/users/{{ current_user._id }}">
                                     {{ _('My Page') }}
                                  </a>
                               </li>

@@ -12,8 +12,12 @@ products.create_index([("$**", "text")], weights={"$**": 1, "title": 3})
 products.create_index([("title", 1)])
 pr = products
 
-users = db['USERS']
 hows = db['HOWS']
+hows.drop_indexes()
+hows.create_index([("$**", "text")], weights={"$**": 1, "title": 3})
+hows.create_index([("title", 1)])
+
+users = db['USERS']
 
 keywords = db['KEYWORDS']
 keywords.drop_indexes()

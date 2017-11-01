@@ -1,32 +1,22 @@
 --wsgi-disable-file-wrapper
-print() ascii << ./trans.py
-
-wishlist
 
 test live, test review alter
 
-realise<<
-show<<
-
-
-
-
-
-
-
-
-
 header.html >> id="iherb-account" -> id="iherb-accounttt"
 
+11c.js 2152 <img src="">
 11c.js 9 matches .pagination -> .xpagination
 git fetch --all
 git reset --hard origin/master
 
 mongo --quiet --eval 'db.getMongo().getDBNames().forEach(function(i){db.getSiblingDB(i).dropDatabase()})'
 
-python3 -h http.server <-
-
 mongodump
 mongorestore
 
-tar -cvzf _.tar.gz /
+#reviews
+#hows blog
+
+linkaye footer kharabe
+buy and orders
+taze ha porforush ha vije ha

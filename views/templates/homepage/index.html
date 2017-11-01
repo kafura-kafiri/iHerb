@@ -23,7 +23,6 @@
 <div id="transBG" class="transparency hide"></div>
 <div id="toaster"></div>
 
-
 {{ scripts.variables() }}
 
 {% include 'layout/header/index.html' %}
@@ -41,13 +40,8 @@
 
 {% include 'live/index.html' %}
 
-<div class="latest-blog-articles-container"
-     data-icon-url="https://s.images-iherb.com//i/footer/visit-our-blog/blog-icon-us-en.png" style="display: none;">
-   <div class="container-fluid">
-      <div class="flex-container">
-      </div>
-   </div>
-</div>
+{% include 'how/latest/index.html' %}
+
 {{ scripts.jquery() }}
 
 {{ scripts.promo() }}

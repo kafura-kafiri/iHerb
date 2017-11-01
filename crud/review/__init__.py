@@ -64,17 +64,18 @@ def bring_reviews(document, size):
     document['reviews']['top_review'] = reviews.find_one({'_id': _top_review})
     return document
 
+
 def init_structure():
     return {
         'score': {
-            'value': 2.9,
+            'value': 5,
             'population': {
-                'total': 0,
+                'total': 1,
                 '1': 0,
                 '2': 0,
                 '3': 0,
                 '4': 0,
-                '5': 0,
+                '5': 1,
             },
         },
         'reviews': [],

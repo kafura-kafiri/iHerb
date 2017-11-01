@@ -18,7 +18,7 @@ users = [
             'Response time': 145,
         },
         'wish_list': {
-            'products': [],
+            'products': {},
             'hows': [],
         },
         'notifications': [],
@@ -41,7 +41,7 @@ users = [
             'Response time': 145,  # 145 min -> within a few hours
         },
         'wish_list': {
-            'products': [],
+            'products': {},
             'hows': [],
         },
         'notifications': [],
@@ -64,7 +64,7 @@ users = [
             'Response time': 145,  # 145 min -> within a few hours
         },
         'wish_list': {
-            'products': [],
+            'products': {},
             'hows': [],
         },
         'notifications': [],
@@ -87,7 +87,7 @@ users = [
             'Response time': 145,  # 145 min -> within a few hours
         },
         'wish_list': {
-            'products': [],
+            'products': {},
             'hows': [],
         },
         'notifications': ['ba delam mikoni bazi', 'bepa nabazi', 'bia ta barat bekhunam'],
@@ -109,3 +109,5 @@ def fill():
     for user in users:
         response = requests.post(url + '+', data={'json': str(user)})
         print(response.content)
+
+fill()

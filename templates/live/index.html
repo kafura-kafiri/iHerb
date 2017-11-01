@@ -137,7 +137,7 @@
 <script>
    var card_width = 146.25;
    resink_flag = 0;
-   window.onload = function() {
+   document.addEventListener('DOMContentLoaded', function() {
       $(function (){
          resink = function() {
             width = $('.live-carousel').css('width');
@@ -191,36 +191,34 @@
 
            this.timeoutCallback = function () {
                if (state != 3) return;
-
                callback();
-
                startTime = new Date();
                timerId = window.setInterval(callback, interval);
                state = 1;
            };
-
            startTime = new Date();
            timerId = window.setInterval(callback, interval);
            state = 1;
          }
-         var cards_threshold = 2, cards_limit = 2, analytic_order = Null;
+         var cards_threshold = 2, cards_limit = 2, analytic_order = null;
          var timee = function() {
-            cards_threshold ++;
             if (cards_threshold == cards_limit) {
-               $.post('/analytics/live/cards_limit/' + ternarini, function(response) {
-                  analytic_order = response['analytic_order']
-                  response['list'].forEach(function(document) {
-                     $('#live_stage').append(tmpl("live_card", document));
-                     cards_threshold = 0;
-                     next();
-                     cards_threshold ++;
-                  });
-               })
+               $.post('/analytics/live/' + cards_limit, function(response) {
+                  analytic_order = response['analytic_order'];
+                  _list = response['list'];
+                  for( var i=0;i<_list.length;i++ ) {
+                     _item = _list[i];
+                     $('#live_stage').append(tmpl("live_card", _item));
+                  }
+                  cards_threshold = 0;
+                  next();
+                  cards_threshold ++;
+               });
             } else {
                next();
                cards_threshold ++;
             }
-         }
+         };
          var timer_flag = 1;
          var timer = new InvervalTimer(timee, 3333);
          $('span.iherb-live-navigation.scroll-right').click(function(eve) {
@@ -237,5 +235,5 @@
             timer_flag = 1 - timer_flag;
          });
       });
-   };
+   });
 </script>

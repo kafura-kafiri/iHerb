@@ -54,7 +54,6 @@ def add_image():
             mime_type = mimetypes.guess_type(url)[0]
             r = requests.get(url, stream=True)
             return insert_img(r.raw.read(), o, mime_type=mime_type)
-        print(request.files)
         if 'file' in request.files:
             file = request.files['file']
             mime_type = mimetypes.guess_type(file.filename)[0]
@@ -62,6 +61,27 @@ def add_image():
         raise Exception
     except Exception as e:
         abort(400)
+
+
+@blue.route('/-')
+def minimize_all():
+    from utility import obj2str
+    from flask import jsonify
+    documents = fs.find()
+    documents = [{
+            '_id': str(document._id),
+            'filename': document.filename,
+        } for document in documents]
+    return jsonify(documents)
+
+
+@blue.route('/*', methods=['GET', 'POST'])
+#@login_required
+def delete_all():
+    import json
+    for i in fs.find():
+        fs.delete(i._id)
+    return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
 
 
 @blue.route('/<size>/<_id>.<_format>')

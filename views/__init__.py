@@ -28,32 +28,8 @@ context = {
 
 @blue.route('/')
 def homepage():
-    keys = [ObjectId(key) for key in trending.keys()]
-    print(keys)
-    context['products'] = products.find({'_id': {"$in": keys}})
+    from crud._services.analytics import show_trending
+    context['products'] = show_trending()
     return render_template('homepage/index.html', **context)
 
-
-@blue.route('/trans')
-def transitive():
-    string = '''
-        {{ _('huli') }}
-    '''
-    return render_template_string(string)
-
-
-trending = {}
-@blue.route('/trending/*')
-def clear_trending():
-    trending.clear()
-    return "['success', 200]", 200
-@blue.route('/trending/<_id>+')
-def insert_trending(_id):
-    trending[_id] = True
-    return "['success', 200]", 200
-@blue.route('/trending/-')
-def show_trending():
-    import json
-    return json.dumps(trending, indent=2)
-
-import views.search
+from views import search

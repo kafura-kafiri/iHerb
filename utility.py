@@ -4,11 +4,13 @@ from bson import ObjectId
 
 def request_json(request, _json=None, specific_type=dict):
     raw = None
+    if _json:
+        raw = _json
+    elif 'json' in request.values:
+        raw = request.values['json']
+    else:
+        raise Exception
     try:
-        if _json:
-            raw = _json
-        else:
-            raw = request.values['json']
         evaluated = literal_eval(raw)
         if specific_type and type(evaluated) is specific_type:
             return evaluated

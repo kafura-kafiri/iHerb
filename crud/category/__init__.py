@@ -5,7 +5,18 @@ from utility import request_attributes
 from pymongo import DESCENDING
 
 blue = Blueprint('categories', __name__)
-crud(blue, categories)
+"""
+ancestors: [
+    {
+        title:
+        _id:
+    }
+]
+"""
+crud(blue, categories, skeleton={
+    'title': '',
+    'ancestors': [],
+})
 
 
 @blue.route('/sug/')

@@ -1,4 +1,4 @@
-from config import analytics
+from config import analytics, products
 from flask import Blueprint, request, jsonify
 from flask_login import current_user
 from functools import wraps
@@ -32,11 +32,20 @@ def _analyze(collection, document, action):
         'document': ObjectId(document),
         'action': action,
         'date': datetime.now(),
-        'order': analytics.count()
+        'order': analytics.count(),
     }
     if current_user.is_authenticated:
         _document['user'] = current_user._id
     analytics.insert_one(_document)
+
+
+def show_trending():
+    from crud.pr.instance import projection
+    _products = products.aggregate(
+        [{ '$sample': {'size': 20}},  {'$project': projection}]
+    )
+    _products = [obj2str(_product) for _product in _products]
+    return _products
 
 
 def crud():
@@ -74,4 +83,20 @@ def crud():
             'analytic_order': skip + limit
         }
         return jsonify(_list)
+
+    trending = {}
+    @blue.route('/trending/*')
+    def clear_trending():
+        trending.clear()
+        return "['success', 200]", 200
+
+    @blue.route('/trending/<_id>+')
+    def insert_trending(_id):
+        trending[_id] = True
+        return "['success', 200]", 200
+
+    @blue.route('/trending/-')
+    def get_trending():
+        return jsonify(show_trending())
+
     return blue

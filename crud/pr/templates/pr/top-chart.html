@@ -2,14 +2,14 @@
          <div id="pagetitlewrapper">
             <div id="breadCrumbs">
                <a href="/BrandsAZ">{{ _('Brands A-Z') }}</a>
-               <a href="https://www.iherb.com/c/Thorne-Research" class="last">{{ pr.brand.title }}</a>
+               <a href="/s/?kw=&category=&brand={{ pr.brand.title }}&page=1&pagesize=24" class="last">{{ pr.brand.title }}</a>
                <br/>
                <a href="https://www.iherb.com/c/Categories">{{ _('Categories') }}</a>
                {% for _category in pr.categories %}
                   {% for _title in _category.ancestors %}
-                     <a href="https://www.iherb.com/c/Vitamins">{{ _title }}</a>
+                     <a href="/s/?kw=&category={{ _title }}&brand=&page=1&pagesize=24">{{ _title }}</a>
                   {% endfor %}
-                  <a href="https://www.iherb.com/c/Vitamins">{{ _category.title }}</a>
+                  <a href="/s/?kw=&category={{ _category.title }}&brand=&page=1&pagesize=24">{{ _category.title }}</a>
                {% endfor %}
                <br/>
             </div>
@@ -182,53 +182,62 @@
             <section class="column fluid product-description-specifications">
                <ul id="product-specs-list">
                   <li>
-                     {{ lang.exp.title }}:
+                     {{ _('Expiration Date') }}:
                      <div id="expiration-message-link" class="question-mark popup-modal">?</div>
                      {{ pr.exp }}
                      <div class="popup-container">
                         <div class="popup-title">
-                           {{ lang.exp.title }}
+                           {{ _('Expiration Date') }}
                         </div>
                         <div class="popup-content">
-                           {{ lang.exp.popup | safe }}
+                           {{ _('''<p>The length of time for the expiration date or &quot;best used before&quot; date depends on
+                              the type of product, as well as the brand.</p>
+                           <p>Perishable items (such as flax oils or certain probiotics) generally have shorter
+                              expiration dates. Although our warehouse is fully air-conditioned, these more fragile
+                              items are put in cold storage (freezer or refrigeration unit) for maximum freshness.</p>
+                           <p>Our receiving department does its best to verify and then enter the correct expiration
+                              dates for all incoming products. However, discrepancies do occur from time to time. This
+                              being said, the exceptionally high turnover at iHerb ensures that our inventory is among
+                              the freshest in the industry.</p>''') | safe }}
                         </div>
                      </div>
                   </li>
 
                   <li>
-                     {{ lang.shipping_weight.title }}:
+                     {{ _('Shipping Weight') }}:
                      <div id="shipping-weight-link" class="question-mark popup-modal-shipping">?</div>
                      <div class="dimensions-popup-wrapper weight">
                         <span class="product-weight">
-                           {{ pr.dimensions.weight.shipping }} {{ lang.dimensions.weight }}
+                           {{ pr.dimensions.weight.shipping }} {{ _('lbs') }}
                         </span>
                         <div class="dimensions-units-popup weight">{{ _('Switch to Metric units') }}</div>
                      </div>
                      <div id="shipping-weight-message" class="popup-container shipping-weight-message">
-                        <div class="popup-title">{{ lang.shipping_weight.title }}</div>
+                        <div class="popup-title">{{ _('lbs') }}</div>
                         <div class="popup-content">
-                           {{ lang.shipping_weight.popup | safe}}
+                           {{ _('''The Shipping Weight includes the product, protective packaging
+                           material and the actual shipping box. In addition, the Shipping Weight may be adjusted for
+                           the Dimensional Weight (e.g. length, width &amp;amp; height) of a package. It is important to
+                           note that certain types of products (e.g. glass containers, liquids, fragile, refrigerated or
+                           ice packed) will often require protective packaging material. As such, these products will
+                           reflect a higher Shipping Weight compared to the unprotected product.''') | safe}}
                         </div>
                      </div>
                   </li>
-                  <li>{{ lang.code.pr }}: <span itemprop="sku">{{ pr.code.pr }}</span></li>
-                  <li>{{ lang.code.upc }}: <span itemprop="gtin12">{{ pr.code.upc }}</span></li>
-                  <li>{{ lang.qnt }}: {{ pr.qnt }}</li>
+                  <li>{{ _('Product Code') }}: <span itemprop="sku">{{ pr.code.pr }}</span></li>
+                  <li>{{ _('UPC Code') }}: <span itemprop="gtin12">{{ pr.code.upc }}</span></li>
+                  <li>{{ _('Package Quantity') }}: {{ pr.qnt }}</li>
                   <li>
-                     {{ lang.dimensions.title }}:
+                     {{ _('Dimensions') }}:
                      <div class="dimensions-popup-wrapper dimensions">
                         <span class="product-weight">
-                                <span id="dimensions">{{ pr.dimensions.x }} x {{ pr.dimensions.y }} x {{ pr.dimensions.z }} {{ lang.dimensions.length }}</span>,
-                                <span id="actual-weight">{{ pr.dimensions.weight.pure }} {{ lang.dimensions.weight }}</span>
+                                <span id="dimensions">{{ pr.dimensions.x }} x {{ pr.dimensions.y }} x {{ pr.dimensions.z }} {{ _('in') }}</span>,
+                                <span id="actual-weight">{{ pr.dimensions.weight.pure }} {{ _('lbs') }}</span>
                         </span>
                         <div class="dimensions-units-popup dimensions">{{ _('Switch to Metric units') }}</div>
                      </div>
                   </li>
-
-
                </ul>
-
-
             </section>
          </div>
 
@@ -289,7 +298,7 @@
                               </a>
                            </div>
                            <span>
-                                {{ lang.dimensions.currency }}{{ pr.value.our }}
+                                {{ _('$') }}{{ pr.value.our }}
                             </span>
                         </li>
                         <li>
@@ -299,7 +308,7 @@
                               </a>
                            </div>
                            <span>
-                                {{ lang.dimensions.currency }}{{ pr.combo.value.our }}
+                                {{ _('$') }}{{ pr.combo.value.our }}
                             </span>
                         </li>
                      </ul>
@@ -308,7 +317,7 @@
                            Together:
                         </strong>
                         <span>
-                            <strong>{{ lang.dimensions.currency }}{{ pr.combo.value.our + pr.value.our - pr.combo.save }}</strong>
+                            <strong>{{ _('$') }}{{ pr.combo.value.our + pr.value.our - pr.combo.save }}</strong>
                         </span>
                      </div>
                      <div class="add-both-to-cart-button">
