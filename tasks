@@ -20,3 +20,19 @@ mongorestore
 linkaye footer kharabe
 buy and orders
 taze ha porforush ha vije ha
+
+
+
+
+
+[Unit]
+Description=hello world
+
+[Service]
+WorkingDirectory=/home/kafura/myproject
+Environment="PATH=/home/kafura/myproject/myprojectenv/bin"
+ExecStart=/home/kafura/myproject/myprojectenv/bin/uwsgi --socket 0.0.0.0:5000 -$
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
