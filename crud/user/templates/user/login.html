@@ -92,7 +92,7 @@
    <div class="container-fluid" id="login-container-fluid" style="border-top: solid thin #d3d3d3;">
       <input type="hidden" id="domainHelper" value="https://checkout.iherb.com/account/login/"/>
       <div id="countryHelper" class="hide">US</div>
-      <h1 id="signin-acc-title">Continue Checkout</h1>
+      <h1 id="signin-acc-title">{{ _('Continue Checkout') }}</h1>
 
 
       <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
@@ -208,46 +208,47 @@
                   </div>
                </div>
                <div class="register-account hide">
-
-
                   <div class="form-group register-options">
-                     <h1 id="create-acc-title">Create an Account</h1>
+                     <h1 id="create-acc-title">{{ _('Create an Account') }}</h1>
                   </div>
-                  <form id="login-register-form" method="post" class="clearBoth" action="/account/register" novalidate>
-                     <input type='hidden'
-                            value="JVU+hAOXmCvsYy+XA+N39RVmrmNsYg5KKrsc9m0qOkTBqGVmXRvn4YQsZoIV1xRdHITr+fxE8FiUvkE9rliAUD8Y3W29vKqA2spw93Q5FcbrUc30Pb8Vr2CSK2XrYz5A"
-                            name="rftdatases"/>
+                  <form id="login-register-form" method="post" class="clearBoth" action="/signup" novalidate>
+                     {% if redirect %}
+                        <input type='hidden' name='redirect' id='redirect' value='{{ redirect }}'></input>
+                     {% endif %}
+                     {% if prev_url %}
+                        <input type='hidden' name='prev_url' id='prev_url' value='{{ prev_url }}'></input>
+                     {% endif %}
                      <div class="form-group register-options">
                         <input autocomplete="off" class="form-control" id="UserNameReg" maxlength="50"
-                               name="UserNameReg" required="required" type="text" value=""/> <label name="UserNameReg"
-                                                                                                    for="UserNameReg">Email
-                        Address</label>
+                               name="email" required="required" type="text" value=""/>
+                        <label name="UserNameReg" for="UserNameReg">{{ _('Email Address') }}</label>
                      </div>
                      <div class="form-group has-feedback register-options">
-                        <input class="form-control" id="PasswordReg" maxlength="120" name="PasswordReg"
-                               required="required" type="password"/> <label name="PasswordReg" for="PasswordReg">Password</label>
+                        <input class="form-control" id="PasswordReg" maxlength="120" name="password"
+                               required="required" type="password"/>
+                        <label name="PasswordReg" for="PasswordReg">{{ _('Password') }}</label>
                         <div class="show-hide-pw" data-id="Password">
                            <i class="icon-eyeopen form-control-feedback hide" aria-hidden="true"></i>
                            <i class="icon-eyeclosed form-control-feedback" aria-hidden="true"></i>
                         </div>
                      </div>
                      <div class="form-group has-feedback register-options">
-                        <input class="form-control" id="ConfirmPassword" maxlength="120" name="ConfirmPassword"
-                               required="required" type="password"/> <label name="ConfirmPassword"
-                                                                            for="ConfirmPassword">Confirm
-                        Password</label>
+                        <input class="form-control" id="ConfirmPassword" maxlength="120" name="confirm_password"
+                               required="required" type="password"/>
+                        <label name="ConfirmPassword" for="ConfirmPassword">{{ _('Confirm Password') }}</label>
                         <div class="show-hide-pw" data-id="Password">
                            <i class="icon-eyeopen form-control-feedback hide" aria-hidden="true"></i>
                            <i class="icon-eyeclosed form-control-feedback" aria-hidden="true"></i>
                         </div>
                      </div>
                      <div class="form-group register-options">
-                        <p class="new-customer-terms">By creating an account you are agreeing to our <a
-                              href="https://www.iherb.com/info/privacy" target="_blank">privacy policy</a> and <a
-                              href="https://www.iherb.com/info/termsofuse" target="_blank">terms of use</a>.</p>
+                        <p class="new-customer-terms">{{ _('By creating an account you are agreeing to our') }}
+                           <a href="https://www.iherb.com/info/privacy" target="_blank">{{_('privacy policy') }}</a>
+                           {{ _('and') }}
+                           <a href="https://www.iherb.com/info/termsofuse" target="_blank">{{ _('terms of use') }}</a>.</p>
                      </div>
                      <div class="form-group register-options">
-                        <input type="submit" name="save" value="Create Account"
+                        <input type="submit" name="save" value="{{ _('Create Account') }}"
                                class="btn btn-secondary btn-xl btn-full">
                      </div>
                   </form>

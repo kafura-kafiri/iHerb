@@ -1,6 +1,19 @@
 from pymongo import MongoClient
 from gridfs import GridFS
 
+
+def configure(app):
+    app.config['DEBUG'] = True
+    app.config['SECRET_KEY'] = 'very secret key'
+    app.config['TESTING'] = True
+
+    from trans import trans, update
+    update()
+    app.jinja_env.globals.update(_=trans)
+    import html
+    app.jinja_env.globals.update(unescape=lambda x: html.unescape(x))
+
+
 client = MongoClient('localhost:27017')
 db = client['IHERB']
 fs = GridFS(client['IHERB_FS'])
@@ -41,3 +54,5 @@ orders = db['ORDERS']
 analytics = db['ANALYTICS']
 
 sessions = db['SESSIONS']
+
+pages = db['PAGES']

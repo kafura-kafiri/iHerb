@@ -12,11 +12,6 @@ users = [
         'password': 'sh',
         'username': 'masoud',
         'email': 'shakeri.masoud@gmail.com',
-        'hosting': {
-            'language': ['farsi'],
-            'Response rate': 65,
-            'Response time': 145,
-        },
         'wish_list': {
             'products': {},
             'hows': [],
@@ -35,11 +30,6 @@ users = [
         'password': 'sh',
         'username': 'pouria',
         'email': 'kafura.kafiri@gmail.com',
-        'hosting': {
-            'language': ['english', 'farsi'],
-            'Response rate': 65,
-            'Response time': 145,  # 145 min -> within a few hours
-        },
         'wish_list': {
             'products': {},
             'hows': [],
@@ -58,11 +48,6 @@ users = [
         'password': 'sh',
         'username': 'ali',
         'email': 'ali.sharifi@gmail.com',
-        'hosting': {
-            'language': ['ebri', 'farsi'],
-            'Response rate': 65,
-            'Response time': 145,  # 145 min -> within a few hours
-        },
         'wish_list': {
             'products': {},
             'hows': [],
@@ -81,11 +66,6 @@ users = [
         'password': 'admin',
         'username': 'admin',
         'email': 'admin@gmail.com',
-        'hosting': {
-            'language': ['english', 'farsi', 'ebri'],
-            'Response rate': 65,
-            'Response time': 145,  # 145 min -> within a few hours
-        },
         'wish_list': {
             'products': {},
             'hows': [],

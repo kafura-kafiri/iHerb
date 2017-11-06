@@ -5,6 +5,8 @@
       <sourceFolder url="file://$MODULE_DIR$/crud/templates" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/static" />
     </content>
+    <content url="file://$MODULE_DIR$/static/css" />
+    <content url="file://$MODULE_DIR$/static/font" />
     <content url="file://$MODULE_DIR$/static/img" />
     <orderEntry type="jdk" jdkName="Python 3.6.3 virtualenv at ~/PycharmProjects/iHerb/venv" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, render_template
 from config import hows
 from crud import crud
 from crud.how.instance import how
@@ -24,3 +24,8 @@ def add_image(_id, level_1, level_2):
         upsert=True
     )
     return o
+
+
+@blue.route('/')
+def hows_homepage():
+    return render_template('how/homepage/index.html')

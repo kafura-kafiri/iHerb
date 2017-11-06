@@ -1,18 +1,7 @@
---wsgi-disable-file-wrapper
+complete hows homepage
+complete and fix how css
 
-test live, test review alter
 
-header.html >> id="iherb-account" -> id="iherb-accounttt"
-
-11c.js 2152 <img src="">
-11c.js 9 matches .pagination -> .xpagination
-git fetch --all
-git reset --hard origin/master
-
-mongo --quiet --eval 'db.getMongo().getDBNames().forEach(function(i){db.getSiblingDB(i).dropDatabase()})'
-
-mongodump
-mongorestore
 
 #reviews
 #hows blog
@@ -20,7 +9,6 @@ mongorestore
 linkaye footer kharabe
 buy and orders
 taze ha porforush ha vije ha
-
 
 
 
@@ -36,3 +24,21 @@ Restart=always
 
 [Install]
 WantedBy=multi-user.target
+
+
+
+--wsgi-disable-file-wrapper
+
+test live, test review alter
+
+header.html >> id="iherb-account" -> id="iherb-accounttt"
+
+11c.js 2152 <img src="">
+11c.js 9 matches .pagination -> .xpagination
+git fetch --all
+git reset --hard origin/master
+
+mongo --quiet --eval 'db.getMongo().getDBNames().forEach(function(i){db.getSiblingDB(i).dropDatabase()})'
+
+mongodump
+mongorestore

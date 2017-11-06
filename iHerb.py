@@ -1,13 +1,7 @@
 from flask import Flask
 app = Flask(__name__, template_folder='templates', static_folder='static')
-
-app.config['DEBUG'] = True
-app.config['SECRET_KEY'] = 'very secret key'
-app.config['TESTING'] = True
-
-from trans import trans, update
-update()
-app.jinja_env.globals.update(_=trans)
+from config import configure
+configure(app)
 
 from crud.user.login import setup
 setup(app)
@@ -44,6 +38,9 @@ app.register_blueprint(review, url_prefix='/reviews')
 
 from crud._services.analytics import crud as analytic
 app.register_blueprint(analytic(), url_prefix='/analytics')
+
+from crud.page import blue as page
+app.register_blueprint(page, url_prefix='/pages')
 
 if __name__ == '__main__':
     app.run(port=5000)

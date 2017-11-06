@@ -379,6 +379,13 @@ dictionary = {
     'items': 'موارد',
     'price': 'قیمت',
     'special': 'ویژه',
+
+    'confirm password': 'رمز عبور را تأیید کنید',
+    'by creating an account you are agreeing to our': 'با ایجاد یک حساب کاربری شما با ما موافقت می کنید',
+    'and': 'و',
+
+    'continue checkout': 'پرداخت را ادامه دهید',
+    'create account': 'ایجاد حساب کاربری',
 }
 
 
